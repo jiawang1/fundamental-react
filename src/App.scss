@@ -1,5 +1,5 @@
-$fd-icons-path: '../node_modules/fiori-fundamentals/scss/icons/';
-$fd-fonts-path: '../node_modules/fiori-fundamentals/dist/fonts/';
+$fd-icons-path: '~fiori-fundamentals/scss/icons/';
+$fd-fonts-path: '~fiori-fundamentals/dist/fonts/';
 @import '../node_modules/fiori-fundamentals/scss/all.scss';
 
 .App {
@@ -17,13 +17,10 @@ $fd-fonts-path: '../node_modules/fiori-fundamentals/dist/fonts/';
     .fd-token,
     .fd-dropdown,
     .fd-button-group,
-    .fd-counter,
-    [class*='fd-identifier'] {
+    // .fd-counter,
+    // [class*='fd-identifier'] 
+    {
         margin-right: 20px;
-    }
-
-    .fd-popover {
-        // margin-right: 60px;
     }
 
     .fd-button--grouped {

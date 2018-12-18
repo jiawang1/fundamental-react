@@ -58,7 +58,7 @@ export class Popover extends Component {
   }
 
   render() {
-    const { id, alignment, noArrow, control, body } = this.props;
+    const { id, alignment, noArrow, control, body, searchInput } = this.props;
     return (
       <div
         className={`fd-popover${alignment ? ' fd-popover--' + alignment : ''}`}
@@ -67,7 +67,7 @@ export class Popover extends Component {
         }}
       >
         <div
-          className="fd-popover__control"
+          className={`fd-popover__control${searchInput ? ' fd-search-input__control' : ''}`}
           aria-expanded={this.state.isExpanded}
           onClick={this.triggerBody}
           aria-controls={id}

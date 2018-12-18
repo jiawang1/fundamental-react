@@ -3,103 +3,25 @@ import { DocsTile, DocsText, Separator, Header, Description, Import, Properties 
 import { SearchInput } from './SearchInput';
 
 export class SearchInputComponent extends Component {
-    data = [
-        'Apple',
-        'Apricot',
-        'Avocado',
-        'Abiu',
-        'Acai',
-        'Acerola',
-        'Ackee',
-        'Arhat',
-        'American Mayapple',
-        'African Cherry Orange',
-        'Amazon grape',
-        'Araza',
-        'Alligator apple',
-        'Ambarella',
-        'African Cucumber',
-        'African Medlar',
-        'African Moringa',
-        'Agave Plant',
-        'Aizen Fruit',
-        'American Black Elderberry',
-        'American Chestnut',
-        'American Hazelnut Shrub',
-        'American Red Raspberry',
-        'Aprium',
-        'Atemoya',
-        'Atherton Raspberry Banana',
-        'Berry',
-        'Bayberry',
-        'Blueberry',
-        'Blackberry',
-        'Boysenberry',
-        'Bearberry',
-        'Bilberry',
-        'Barberry',
-        'Buffaloberry',
-        'Black cherry',
-        'Beach plum',
-        'Black raspberry',
-        'Black apple',
-        'Blue tongue',
-        'Bolwarra',
-        'Burdekin plum',
-        'Bramble',
-        'Broadleaf Bramble',
-        'Black mulberry',
-        'Blood orange',
-        'Babaco',
-        'Bael',
-        'Barbadine',
-        'Barbados cherry',
-        'Betel nut',
-        'Bilimbi',
-        'Bitter gourd',
-        'Black sapote',
-        'Bottle gourd',
-        'Brazil nut',
-        'Breadfruit',
-        'Burmese grape',
-        'Blackcurrant',
-        'Bignay',
-        'Beechnut',
-        'Bacuri Fruit',
-        'Balsam Apple',
-        'Batuan Fruit',
-        'Blood Lime',
-        'Brazilian Guava',
-        'Brush cherry Cantaloupe',
-        'Chokeberry',
-        'Cranberry',
-        'Cloudberry',
-        'Crowberry',
-        'Conkerberry',
-        'Calabash',
-        'Calamansi',
-        'Calamondins',
-        'Canistel',
-        'Cape Gooseberry',
-        'Capuli Cherry',
-        'Carob Fruit',
-        'Cashew Apple',
-        'Cedar Bay Cherry',
-        'Cempedak',
-        'Ceylon Gooseberry',
-        'Charichuelo Fruit',
-        'Chayote Fruit',
-        'Cherimoya Fruit',
-        'cherry Fruit',
-        'Chokecherry',
-        'Citrofortunella',
-        'Clementines',
-        'Cluster Fig',
-        'Coco Plum',
-        'Common Apple Berry',
-        'Cornelian Cherry',
-        'Cucumber',
-        'Cupuacu'
+    searchData = [
+        { text: 'apple', callback: () => alert('apple') },
+        { text: 'apricot', callback: () => alert('apricot') },
+        { text: 'acai', callback: () => alert('acai') },
+        { text: 'acerola', callback: () => alert('acerola') },
+        { text: 'banana', callback: () => alert('banana') },
+        { text: 'berry', callback: () => alert('berry') },
+        { text: 'blueberry', callback: () => alert('blueberry') },
+        { text: 'blackberry', callback: () => alert('blackberry') },
+        { text: 'balsam apple', callback: () => alert('balsam apple') },
+        { text: 'chokeberry', callback: () => alert('chokeberry') },
+        { text: 'cranberry', callback: () => alert('cranberry') },
+        { text: 'cloudberry', callback: () => alert('cloudberry') },
+        { text: 'crowberry', callback: () => alert('crowberry') },
+        { text: 'conkerberry', callback: () => alert('conkerberry') },
+        { text: 'calabash', callback: () => alert('calabash') },
+        { text: 'clementines', callback: () => alert('clementines') },
+        { text: 'kiwi', callback: () => alert('kiwi') },
+        { text: 'orange', callback: () => alert('orange') }
     ];
 
     constructor(props) {
@@ -110,17 +32,9 @@ export class SearchInputComponent extends Component {
         };
     }
 
-    searchInputCode = `<SearchInput
-  placeHolder="Enter a fruit"
-  onSearch={this.performSearch}
-/>`;
+    searchInputCode = ``;
 
-    autoCompleteSearchInputCode = `<SearchInput
-  placeHolder="Enter a fruit"
-  data={this.state.data}
-  onAutoComplete={this.performAutoComplete}
-  onSearch={this.performSearch}
-/>`;
+    autoCompleteSearchInputCode = ``;
 
     exampleAutoCompleteMethod = `performAutoComplete = searchTerm => {
   const searchResults = this.data.filter(item => {
@@ -184,7 +98,12 @@ export class SearchInputComponent extends Component {
                 </Description>
                 <DocsTile>
                     <div>
-                        <SearchInput placeHolder="Enter a fruit" onSearch={this.performSearch} />
+                        <SearchInput
+                            placeHolder="Enter a fruit"
+                            onSearch={this.performSearch}
+                            searchList={this.searchData}
+                            onEnter={() => alert('hi!')}
+                        />
                     </div>
                 </DocsTile>
                 <DocsText>{this.searchInputCode}</DocsText>

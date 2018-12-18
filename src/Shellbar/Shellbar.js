@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Popover, Menu, MenuList, MenuItem, Identifier, Icon } from '../';
+import { Popover, Menu, MenuList, MenuItem, Identifier, Icon, SearchInput } from '../';
 
 export class Shellbar extends Component {
     static propTypes = {
@@ -14,37 +14,70 @@ export class Shellbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapsedActions: this.getCollapsedActions()
+            collapsedActions: this.getCollapsedActions(),
+            showCollapsedProductSwitcherMenu: false
+            // shellbarWidth: null,
+            // shellbarEndWidth: null,
+            // shellbarActionsWidth: null,
         };
-        this.onResize = this.onResize.bind(this);
+        // this.onResize = this.onResize.bind(this);
     }
+
+    backBtnHandler = event => {
+        event.preventDefault();
+        event.stopPropagation();
+        this.setState({
+            showCollapsedProductSwitcherMenu: false
+        });
+    };
 
     getCollapsedActions = () => {
         if (this.props.actions) {
             let collapsedList = [...this.props.actions];
+            let collapsedProductSwitcher = this.props.productSwitcher;
+
+            collapsedProductSwitcher.callback = () => {
+                this.setState(prevState => ({
+                    showCollapsedProductSwitcherMenu: !prevState.showCollapsedProductSwitcherMenu
+                }));
+            };
+
             collapsedList.push(this.props.productSwitcher);
+            if (this.props.searchInput) {
+                collapsedList.unshift(this.props.searchInput);
+            }
             return collapsedList;
         }
     };
 
-    componentWillMount() {
-        this.setState({
-            collapsed: false
-        });
-    }
+    // componentWillMount() {
+    //     this.setState({
+    //         collapsed: false
+    //     });
+    // }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.onResize);
-        this.onResize();
-    }
+    // componentDidMount() {
+    //     this.setState({
+    //         shellbarWidth: this.shellbar.offsetWidth,
+    //         shellbarEndWidth: this.shellbarEnd.offsetWidth,
+    //         shellbarActionsWidth: this.shellbarActions.offsetWidth
+    //     });
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.onResize);
-    }
+    //     window.addEventListener('resize', this.onResize);
+    //     this.onResize();
+    // }
 
-    onResize() {
-        this.setState({ collapsed: window.innerWidth <= 1024 });
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener('resize', this.onResize);
+    // }
+
+    // onResize() {
+    //     this.setState({
+    //         shellbarWidth: this.shellbar.offsetWidth,
+    //         shellbarEndWidth: this.shellbarEnd.offsetWidth,
+    //         shellbarActionsWidth: this.shellbarActions.offsetWidth
+    //     });
+    // }
 
     render() {
         const {
@@ -53,6 +86,7 @@ export class Shellbar extends Component {
             productMenu,
             subtitle,
             copilot,
+            searchInput,
             actions,
             productSwitcher,
             productSwitcherList,
@@ -120,6 +154,16 @@ export class Shellbar extends Component {
                 ) : null}
                 <div className="fd-shellbar__group fd-shellbar__group--end">
                     <div className="fd-shellbar__actions">
+                        {searchInput && (
+                            <div className="fd-shellbar__action fd-shellbar__action--collapsible">
+                                <SearchInput
+                                    inShellbar
+                                    placeholder={searchInput.placeholder}
+                                    searchList={searchInput.searchList}
+                                    onEnter={searchInput.onSearch}
+                                />
+                            </div>
+                        )}
                         {actions &&
                             actions.map((action, index) => {
                                 return (
@@ -164,7 +208,7 @@ export class Shellbar extends Component {
                                     </div>
                                 );
                             })}
-                        {this.state.collapsed && actions && (
+                        {actions && (
                             <div className="fd-shellbar__action fd-shellbar__action--collapse">
                                 <div className="fd-shellbar-collapse">
                                     <Popover
@@ -182,10 +226,35 @@ export class Shellbar extends Component {
                                             </div>
                                         }
                                         body={
-                                            userMenu && (
-                                                <Menu>
+                                            <Menu>
+                                                {!this.state.showCollapsedProductSwitcherMenu ? (
                                                     <MenuList>
                                                         {this.state.collapsedActions.map((item, index) => {
+                                                            return (
+                                                                <span onClick={e => e.stopPropagation()}>
+                                                                    <MenuItem
+                                                                        onclick={item.callback}
+                                                                        url={item.url}
+                                                                        link={item.link}
+                                                                        key={index}
+                                                                    >
+                                                                        {item.label}
+                                                                    </MenuItem>
+                                                                </span>
+                                                            );
+                                                        })}
+                                                    </MenuList>
+                                                ) : (
+                                                    <MenuList>
+                                                        <span onClick={e => e.stopPropagation()}>
+                                                            <MenuItem>
+                                                                <span
+                                                                    className="fd-menu__item sap-icon--nav-back"
+                                                                    onClick={e => this.backBtnHandler(e)}
+                                                                />
+                                                            </MenuItem>
+                                                        </span>
+                                                        {productSwitcherList.map((item, index) => {
                                                             return (
                                                                 <MenuItem
                                                                     onclick={item.callback}
@@ -193,13 +262,13 @@ export class Shellbar extends Component {
                                                                     link={item.link}
                                                                     key={index}
                                                                 >
-                                                                    {item.label}
+                                                                    {item.title}
                                                                 </MenuItem>
                                                             );
                                                         })}
                                                     </MenuList>
-                                                </Menu>
-                                            )
+                                                )}
+                                            </Menu>
                                         }
                                     />
                                 </div>
