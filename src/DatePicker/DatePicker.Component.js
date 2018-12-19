@@ -43,21 +43,26 @@ export const DatePickerComponent = () => {
 
             <h2>Simple Date Picker</h2>
             <DocsTile centered>
+            <div className="fd-doc__margin--datePicker">
                 <DatePicker disableBeforeDate={new Date(2018, 11, 24, 0, 0, 0, 0)} disableWeekends={true} />
                 <DatePicker
                     compact
                     disableWeekday={['Monday', 'Tuesday']}
                     blockedDates={[new Date(2018, 11, 1, 0, 0, 0, 0), new Date(2018, 11, 23, 0, 0, 0, 0)]}
                 />
+                </div>
             </DocsTile>
             <DocsText>{defaultDatePickerCode}</DocsText>
             <Separator />
 
             <h2>Range Date Picker</h2>
             <DocsTile centered>
+            <div className="fd-doc__margin--datePicker">
                 <DatePicker enableRangeSelection disableFutureDates />
                 <DatePicker enableRangeSelection disablePastDates compact />
+                </div>
             </DocsTile>
+           
             <DocsText>{enableRangeSelectionDatePickerCode}</DocsText>
         </div>
     );

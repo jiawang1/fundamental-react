@@ -113,6 +113,7 @@ export const PopoverComponent = () => {
 
             <h2>Popover Example</h2>
             <DocsTile centered>
+            <div className="fd-doc__margin--popover">
                 <Popover
                     id="jhqD0555"
                     control={<Icon glyph="cart" size="xl" />}
@@ -176,6 +177,7 @@ export const PopoverComponent = () => {
                         </Menu>
                     }
                 />
+                </div>
             </DocsTile>
             <DocsText>{popoverCode}</DocsText>
             <Separator />

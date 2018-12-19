@@ -78,9 +78,10 @@ export class SearchInput extends Component {
     }
 
     onEscHandler(event) {
-        if (event.keyCode === 27 && this.state.isExpanded === true) {
+        if ((event.keyCode === 27 && this.state.isExpanded === true) || (event.keyCode === 27 && this.state.searchExpanded === true)) {
             this.setState({
                 isExpanded: false,
+                searchExpanded: false,
                 value: '',
                 searchList: this.props.searchList,
                 filteredResult: this.props.searchList
@@ -117,7 +118,7 @@ export class SearchInput extends Component {
     }
 
     render() {
-        const { placeholder, inShellbar, searchList, onSearch, onEnter } = this.props;
+        const { placeholder, inShellbar, onSearch } = this.props;
 
         return (
             <div className={`fd-search-input${inShellbar ? ' fd-search-input--closed' : ''}`}>

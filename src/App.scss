@@ -6,23 +6,7 @@ $fd-fonts-path: '~fiori-fundamentals/dist/fonts/';
     background-color: white;
 }
 
-.fd-counter--notification {
-    position: relative;
-}
-
 .fd-tile__content {
-    .fd-badge,
-    .fd-label,
-    .fd-status-label,
-    .fd-token,
-    .fd-dropdown,
-    .fd-button-group,
-    // .fd-counter,
-    // [class*='fd-identifier'] 
-    {
-        margin-right: 20px;
-    }
-
     .fd-button--grouped {
         margin-right: 0;
     }
@@ -33,11 +17,19 @@ $fd-fonts-path: '~fiori-fundamentals/dist/fonts/';
         }
     }
 
-    .fd-doc__margin button {
-        margin-right: 20px;
-    }
-
-    .fd-doc__margin [class*='fd-image'] {
+    .fd-doc__margin--popover .fd-popover,
+    .fd-doc__margin--datePicker .fd-date-picker,
+    .fd-doc__margin--token .fd-token,
+    .fd-doc__margin--buttonGroup .fd-button-group,
+    .fd-doc__margin--button button,
+    .fd-doc__margin [class*='fd-image'],
+    .fd-doc__margin--panel .fd-token,
+    .fd-doc__margin--panel .fd-button,
+    .fd-doc__margin--dropdown .fd-dropdown,
+    .fd-doc__margin--icon span,
+    .fd-doc__margin--identifier span,
+    .fd-doc__margin--image span,
+    .fd-doc__margin--statusIndicator span {
         margin-right: 20px;
     }
 }
