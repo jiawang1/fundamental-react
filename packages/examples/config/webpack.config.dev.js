@@ -40,6 +40,9 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // common function to get style loaders
 const getStyleLoaders = (cssOptions, preProcessor) => {
+  console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+  console.log(paths.appSrc)
+  console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
   const loaders = [
     require.resolve('style-loader'),
     {

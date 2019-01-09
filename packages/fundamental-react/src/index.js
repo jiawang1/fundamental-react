@@ -3,36 +3,36 @@ import {
     ActionBarBack,
     ActionBarHeader,
     ActionBarActions
-} from '../src/ActionBar/ActionBar';
+} from './ActionBar/ActionBar';
 import {
     Alert
-} from '../src/Alert/Alert';
+} from './Alert/Alert';
 import {
     Badge,
     Label,
     Status,
     Counter
-} from '../src/Badge/Badge';
+} from './Badge/Badge';
 import {
     Breadcrumb,
     BreadcrumbItem
-} from '../src/Breadcrumb/Breadcrumb';
+} from './Breadcrumb/Breadcrumb';
 import {
     Button,
     ButtonGroup
-} from '../src/Button/Button';
+} from './Button/Button';
 import {
     Calendar
-} from '../src/Calendar/Calendar';
+} from './Calendar/Calendar';
 import {
     ComboboxInput
-} from '../src/ComboboxInput/ComboboxInput';
+} from './ComboboxInput/ComboboxInput';
 import {
     DatePicker
-} from '../src/DatePicker/DatePicker';
+} from './DatePicker/DatePicker';
 import {
     Dropdown
-} from '../src/Dropdown/Dropdown';
+} from './Dropdown/Dropdown';
 import {
     FormSet,
     FormItem,
@@ -44,19 +44,19 @@ import {
     FormSelect,
     FormFieldset,
     FormLegend
-} from '../src/Forms/Forms';
-import { Icon } from '../src/Icon/Icon';
-import { Identifier } from '../src/Identifier/Identifier';
-import { Image } from '../src/Image/Image';
-import { InlineHelp } from '../src/InlineHelp/InlineHelp';
-import { InputGroup, FormGroup } from '../src/InputGroup/InputGroup';
-import { ListGroup, ListGroupItem, ListGroupItemActions, ListGroupItemCheckbox } from '../src/ListGroup/ListGroup';
-import { LocalizationEditor } from '../src/LocalizationEditor/LocalizationEditor';
-import { MegaMenu, MegaMenuList, MegaMenuGroup } from '../src/MegaMenu/MegaMenu';
-import { Menu, MenuList, MenuItem, MenuGroup } from '../src/Menu/Menu';
-import { Modal } from '../src/Modal/Modal';
-import { MultiInput } from '../src/MultiInput/MultiInput';
-import { Pagination } from '../src/Pagination/Pagination';
+} from './Forms/Forms';
+import { Icon } from './Icon/Icon';
+import { Identifier } from './Identifier/Identifier';
+import { Image } from './Image/Image';
+import { InlineHelp } from './InlineHelp/InlineHelp';
+import { InputGroup, FormGroup } from './InputGroup/InputGroup';
+import { ListGroup, ListGroupItem, ListGroupItemActions, ListGroupItemCheckbox } from './ListGroup/ListGroup';
+import { LocalizationEditor } from './LocalizationEditor/LocalizationEditor';
+import { MegaMenu, MegaMenuList, MegaMenuGroup } from './MegaMenu/MegaMenu';
+import { Menu, MenuList, MenuItem, MenuGroup } from './Menu/Menu';
+import { Modal } from './Modal/Modal';
+import { MultiInput } from './MultiInput/MultiInput';
+import { Pagination } from './Pagination/Pagination';
 import {
     Panel,
     PanelGrid,
@@ -67,12 +67,12 @@ import {
     PanelFilters,
     PanelContent,
     PanelFooter
-} from '../src/Panel/Panel';
-import { Popover } from '../src/Popover/Popover';
-import { SearchInput } from '../src/SearchInput/SearchInput';
-import { SideNav, SideNavList, SideNavGroup } from '../src/SideNavigation/SideNavigation';
-import { Table } from '../src/Table/Table';
-import { Tabs, TabComponent } from '../src/Tabs/Tabs';
+} from './Panel/Panel';
+import { Popover } from './Popover/Popover';
+import { SearchInput } from './SearchInput/SearchInput';
+import { SideNav, SideNavList, SideNavGroup } from './SideNavigation/SideNavigation';
+import { Table } from './Table/Table';
+import { Tabs, TabComponent } from './Tabs/Tabs';
 import { Token } from './Token/Token';
 import {
     Tile,
@@ -83,19 +83,19 @@ import {
     ProductTileMedia,
     TileGrid,
     ProductTileContent
-} from '../src/Tile/Tile';
-import { Toggle } from '../src/Toggle/Toggle';
-import { Tree } from '../src/Tree/Tree';
-import { Time } from '../src/Time/Time';
-import { TimePicker } from '../src/TimePicker/TimePicker';
-import { Shellbar } from '../src/Shellbar/Shellbar';
-import { DocsTile, DocsText } from '../src/documentation/DocsTile/DocsTile';
-import { Separator } from '../src/documentation/Separator/Separator';
-import { Header } from '../src/documentation/Header/Header';
-import { Description } from '../src/documentation/Description/Description';
-import { Import } from '../src/documentation/Import/Import';
-import { Properties } from '../src/documentation/Properties/Properties';
-import { Playground } from '../src/documentation/Playground/Playground';
+} from './Tile/Tile';
+import { Toggle } from './Toggle/Toggle';
+import { Tree } from './Tree/Tree';
+import { Time } from './Time/Time';
+import { TimePicker } from './TimePicker/TimePicker';
+import { Shellbar } from './Shellbar/Shellbar';
+import { DocsTile, DocsText } from './documentation/DocsTile/DocsTile';
+import { Separator } from './documentation/Separator/Separator';
+import { Header } from './documentation/Header/Header';
+import { Description } from './documentation/Description/Description';
+import { Import } from './documentation/Import/Import';
+import { Properties } from './documentation/Properties/Properties';
+import { Playground } from './documentation/Playground/Playground';
 
 export {
     DocsTile,
