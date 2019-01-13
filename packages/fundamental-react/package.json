@@ -1,6 +1,6 @@
 {
   "name": "@jay.wang/fundamental-react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "license": "Apache-2.0",
   "homepage": "http://sap.github.io/fundamental-react",
@@ -26,8 +26,8 @@
     "test": "node scripts/test.js"
   },
   "dependencies": {
-    "react-syntax-highlighter": "^9.0.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "react-syntax-highlighter": "^9.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
