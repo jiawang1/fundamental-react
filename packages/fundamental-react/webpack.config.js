@@ -6,11 +6,15 @@ const packageJson = require('./package.json');
 
 const fileInfo = path.parse(packageJson.main);
 
-const makesure = dir => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
-  return dir;
+const makesureDir = dir => {
+  const paths = dir.split(path.sep);
+  return paths.reduce((parentPath, relativePath) => {
+    const filePath = path.join(parentPath, relativePath);
+    if (!fs.existsSync(filePath)) {
+      fs.mkdirSync(filePath);
+    }
+    return filePath;
+  }, process.cwd());
 };
 
 module.exports = {
@@ -18,7 +22,7 @@ module.exports = {
   entry: path.join(process.cwd(), 'src/index.js'),
   output: {
     libraryTarget: 'umd',
-    path: path.join(process.cwd(), makesure(fileInfo.dir)),
+    path: makesureDir(fileInfo.dir),
     filename: fileInfo.base
   },
   externals: {
