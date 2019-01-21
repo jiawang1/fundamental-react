@@ -1,6 +1,6 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from '@jay.wang/fundamental-react';
-import { DocsTile, DocsText, Separator, Header, Description, Import } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import } from '../documentation';
 
 export const BreadcrumbComponent = () => {
     const breadcrumbHrefCode = `<Breadcrumb>

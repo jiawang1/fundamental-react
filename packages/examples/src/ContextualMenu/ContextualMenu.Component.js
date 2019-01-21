@@ -1,6 +1,6 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description } from '@jay.wang/fundamental-react';
 import { Popover, Button, Menu, MenuList, MenuItem } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description } from '../documentation';
 
 export const ContextualMenuComponent = () => {
     const contextualMenuIconCode = `<Popover

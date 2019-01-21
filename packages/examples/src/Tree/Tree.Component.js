@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { Tree} from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const TreeComponent = () => {
     const treeCode = `headers={['Column Header', 'Column Header 1 ', 'Column Header 2', 'Status']}

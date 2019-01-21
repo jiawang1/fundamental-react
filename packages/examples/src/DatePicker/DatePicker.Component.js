@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { DatePicker } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const DatePickerComponent = () => {
     const defaultDatePickerCode = `<DatePicker disableBeforeDate={new Date(2018, 11, 24, 0, 0, 0, 0)} disableWeekends={true} />

@@ -9,7 +9,7 @@ import {
   Import,
   Properties,
   Playground
-} from '@jay.wang/fundamental-react';
+} from '../documentation';
 
 export const IconComponent = () => {
   const iconsCode = `<Icon glyph="cart" size="s" />

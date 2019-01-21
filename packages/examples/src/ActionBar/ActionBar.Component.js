@@ -8,15 +8,9 @@ import {
   Popover,
   Menu,
   MenuList,
-  MenuItem,
-  DocsTile,
-  DocsText,
-  Separator,
-  Header,
-  Description,
-  Import,
-  Properties
+  MenuItem
 } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const ActionBarComponent = () => {
   const actionBarBackBtnCode = `<ActionBar>

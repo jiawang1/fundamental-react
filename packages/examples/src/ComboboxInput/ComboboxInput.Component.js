@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { Menu, MenuItem, MenuList, ComboboxInput } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Import, Properties } from '../documentation';
 
 export const ComboboxInputComponent = () => {
     const comboboxInputCode = `<ComboboxInput

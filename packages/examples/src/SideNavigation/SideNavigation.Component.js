@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { SideNav, SideNavList, SideNavGroup } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const SideNavigationComponent = () => {
     const sideNavOneLevelCode = `<SideNav>

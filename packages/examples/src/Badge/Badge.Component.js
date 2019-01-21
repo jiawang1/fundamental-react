@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge, Label, Status, Counter, Button } from '@jay.wang/fundamental-react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Playground } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Playground } from '../documentation';
 
 export const BadgeComponent = () => {
     const defaultBadgeCode = `<Badge>Default</Badge>

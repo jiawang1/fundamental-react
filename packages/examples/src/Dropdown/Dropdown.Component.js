@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { Dropdown, Popover, Button, Menu, MenuList, MenuItem } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const DropdownComponent = () => {
     const defaultDropdownCode = `<Dropdown>

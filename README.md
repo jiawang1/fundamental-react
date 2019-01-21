@@ -42,7 +42,7 @@ Fundamental-react does not include the [SAP Fiori Fundamentals library](https://
 
 2. Install Fundamental-react:
 
-`npm install --save fundamental-react`
+`npm install --save @jay.wang/fundamental-react`
 
 [npm package for fundamental-react](https://www.npmjs.com/package/fundamental-react)
 
@@ -64,29 +64,13 @@ You can now use the [Component Documentation](https://sap.github.io/fundamental-
 
 ## Available Scripts
 
-`npm start`
+`npm run boot`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install lerna fist and other external dependencies and hoist to parent folder, link internal dependencies.
 
-The page will automatically reload on changes.<br>
-Lint errors are shown in the console.
+`npm run deploy`
 
-`npm test`
-
-Launches the test runner in the interactive watch mode.
-
-`npm test -- --coverage`
-
-Launches the test runner and display code coverage report.
-
-`npm test -- --coverage --watch`
-
-Launches the test runner and display code coverage report and interactive watch mode.
-
-`npm run build`
-
-Builds the app for production to the `build` folder.
+Deploy packages which chagned to npm repo, bump version number automatically.
 
 ## Known Issues
 

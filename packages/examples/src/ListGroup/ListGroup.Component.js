@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ListGroup, ListGroupItem, ListGroupItemActions, ListGroupItemCheckbox } from '@jay.wang/fundamental-react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Playground } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Playground } from '../documentation';
 
 export const ListGroupComponent = () => {
     const simpleListCode = `<ListGroup>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { Modal, Button } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export class ModalComponent extends Component {
     constructor(props) {

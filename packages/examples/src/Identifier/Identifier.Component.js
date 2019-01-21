@@ -1,6 +1,6 @@
 import React from 'react';
 import { Identifier } from '@jay.wang/fundamental-react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Playground } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Playground } from '../documentation';
 
 
 export const IdentifierComponent = () => {

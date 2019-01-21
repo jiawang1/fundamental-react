@@ -8,7 +8,7 @@ import {
   Header,
   Description,
   Properties
-} from '@jay.wang/fundamental-react';
+} from '../documentation';
 
 export const TimePickerComponent = () => {
   const defaultTimeCode = '<TimePicker />';

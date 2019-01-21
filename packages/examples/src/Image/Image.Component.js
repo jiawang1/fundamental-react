@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from '@jay.wang/fundamental-react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Playground } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Playground } from '../documentation';
 
 export const ImageComponent = () => {
     const sizesImageCode = `<Image size="s" photo="https://placeimg.com/400/400/nature"></Image>

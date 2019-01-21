@@ -1,5 +1,6 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Pagination } from '@jay.wang/fundamental-react';
+import { Pagination } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const PaginationComponent = () => {
     const handleClick = event => {

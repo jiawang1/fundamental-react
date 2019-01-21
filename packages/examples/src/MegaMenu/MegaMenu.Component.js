@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { MegaMenu, MegaMenuList, MegaMenuGroup } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const MegaMenuComponent = () => {
     const defaultMegaMenuCode = `<MegaMenu>

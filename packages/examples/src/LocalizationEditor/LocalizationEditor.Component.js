@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocsTile, DocsText, Separator, Header, Import, Properties } from '@jay.wang/fundamental-react';
+
 import { LocalizationEditor } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Import, Properties } from '../documentation';
 
 export const LocalizationEditorComponent = () => {
     const localizationEditorCode = `<LocalizationEditor

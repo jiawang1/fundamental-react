@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toggle } from '@jay.wang/fundamental-react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 
 export const ToggleComponent = () => {
     const toggleCode = `<Toggle size="xs" id="Yj07w604">

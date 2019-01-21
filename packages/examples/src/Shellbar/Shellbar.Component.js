@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { DocsTile, DocsText, Separator, Header, Description, Import, Properties, Menu, MenuList, MenuItem } from '@jay.wang/fundamental-react';
-import { Shellbar } from '@jay.wang/fundamental-react';
+
+import { Shellbar, Menu, MenuList, MenuItem } from '@jay.wang/fundamental-react';
+import { DocsTile, DocsText, Separator, Header, Description, Import, Properties } from '../documentation';
 var images = require.context('../../assets', true);
 
 export class ShellbarComponent extends Component {

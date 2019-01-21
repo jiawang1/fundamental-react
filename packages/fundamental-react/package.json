@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "react-router-dom": "^4.3.1",
-    "react-syntax-highlighter": "^9.0.1"
+    "react-syntax-highlighter": "^10.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -65,6 +65,7 @@
     "resolve": "1.8.1",
     "standard-version": "^4.4.0",
     "webpack": "4.19.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1"
   },
   "peerDependencies": {

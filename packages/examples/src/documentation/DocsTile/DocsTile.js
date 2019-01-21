@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {googlecode} from 'react-syntax-highlighter/styles/hljs';
-import {Button} from '../../Button/Button';
+import {Button} from '@jay.wang/fundamental-react';
 
 export const DocsTile = props => {
     const docsTileStyle = {

@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const packageJson = require('./package.json');
 
 const fileInfo = path.parse(packageJson.main);
@@ -70,5 +71,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [new BundleAnalyzerPlugin()]
 };
