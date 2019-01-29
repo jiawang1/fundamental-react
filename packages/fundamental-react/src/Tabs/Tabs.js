@@ -5,11 +5,9 @@ import { BrowserRouter, Link } from 'react-router-dom';
 export const Tabs = props => {
   const { children, className, ...rest } = props;
   return (
-      <ul
-          className={`fd-tabs-container${className ? ' ' + className : ''}`}
-          {...rest}>
-          {children}
-      </ul>
+    <ul className={`fd-tabs-container${className ? ` ${className}` : ''}`} {...rest}>
+      {children}
+    </ul>
   );
 };
 
@@ -19,8 +17,8 @@ export class TabComponent extends Component {
     let initialStates = [];
 
     initialStates = props.ids.forEach(ids => {
-      let obj = {};
-      let id = ids.id;
+      const obj = {};
+      const id = ids.id;
       obj[id] = false;
       return obj;
     });
@@ -33,7 +31,7 @@ export class TabComponent extends Component {
   }
 
   handleTabSelection(e, id) {
-    let iStates = Object.assign({}, this.state.tabStates);
+    const iStates = Object.assign({}, this.state.tabStates);
     iStates[id.id] = !iStates[id.id];
     this.setState({ tabStates: iStates });
     this.setState({ selectedTab: id.id });
@@ -42,30 +40,25 @@ export class TabComponent extends Component {
   render() {
     const { ids, className, ...rest } = this.props;
     return (
-        <BrowserRouter>
-            <ul className={`fd-tabs${className ? ' ' + className : ''}`} {...rest}>
-                {ids.map(id => {
-            return (
-                <li className='fd-tabs__item' key={id.id}>
-                    <Link
-                        aria-disabled={id.disabled}
-                        className={`fd-tabs__link${
-                    this.state.selectedTab === id.id ? ' is-selected' : ''
-                  }`}
-                        to={{ pathname: id.url }}
-                        onClick={e => {
-                    !id.disabled && this.handleTabSelection(e, id, id.disabled);
-                  }}>
-                        {id.name}
-                    </Link>
-                    {this.state.selectedTab === id.id ? (
-                        <p className='fd-tabs__content'>{id.content}</p>
-                ) : null}
-                </li>
-            );
-          })}
-            </ul>
-        </BrowserRouter>
+      <BrowserRouter>
+        <ul className={`fd-tabs${className ? ` ${className}` : ''}`} {...rest}>
+          {ids.map(id => (
+            <li className="fd-tabs__item" key={id.id}>
+              <Link
+                aria-disabled={id.disabled}
+                className={`fd-tabs__link${this.state.selectedTab === id.id ? ' is-selected' : ''}`}
+                to={{ pathname: id.url }}
+                onClick={e => {
+                  !id.disabled && this.handleTabSelection(e, id, id.disabled);
+                }}
+              >
+                {id.name}
+              </Link>
+              {this.state.selectedTab === id.id ? <p className="fd-tabs__content">{id.content}</p> : null}
+            </li>
+          ))}
+        </ul>
+      </BrowserRouter>
     );
   }
 }

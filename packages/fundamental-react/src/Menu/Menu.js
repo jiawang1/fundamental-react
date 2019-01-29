@@ -1,70 +1,100 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 // ------------------------------------------- Menu ------------------------------------------
-export const Menu = ({ addonBefore, children, className, ...props }) => {
-    return (
-        <nav className={`fd-menu${addonBefore ? ' fd-menu--addon-before' : ''}${className ? ' ' + className : ''}`} {...props}>
-            {children}
-        </nav>
-    );
-};
 
-Menu.propTypes = {
-    addonBefore: PropTypes.bool,
-    className: PropTypes.string
-};
+export const MenuContext = React.createContext({ state: {}, onClick: () => {} });
+export class Menu extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    defaultSelectedKeys: PropTypes.array
+  };
+
+  constructor(props) {
+    super(props);
+    const { defaultSelectedKeys = [] } = props;
+    this.state = {
+      selectedKeys: defaultSelectedKeys
+    };
+  }
+
+  handleClick = (key, e) => {
+    const { onClick } = this.props;
+    const { selectedKeys } = this.state;
+    const originSelectedKeys = selectedKeys.slice();
+
+    if (selectedKeys.some(sk => sk === key)) {
+      selectedKeys.splice(selectedKeys.indexOf(key), 1);
+    } else {
+      selectedKeys.push(key);
+    }
+
+    this.setState({ selectedKeys });
+
+    if (onClick) {
+      onClick(key, originSelectedKeys, e);
+    }
+  };
+
+  render() {
+    const { children, className, onClick, defaultSelectedKeys, ...restProps } = this.props;
+    return (
+      <MenuContext.Provider value={{ menuState: this.state, onClick: this.handleClick }}>
+        <nav className={className} {...restProps}>
+          <MenuList>{children}</MenuList>
+        </nav>
+      </MenuContext.Provider>
+    );
+  }
+}
 
 // ---------------------------------------- Menu List ----------------------------------------
-export const MenuList = ({ children, className, ...props }) => {
-    return <ul className={`fd-menu__list${className ? ' ' + className : ''}`} {...props}>{children}</ul>;
-};
-
-// ---------------------------------------- Menu Item ----------------------------------------
-export const MenuItem = ({ url, link, isLink, separator, addon, children, onclick, className, ...props }) => {
-    return (
-        <React.Fragment>
-            <li className={className} {...props}>
-                {addon &&
-                    <div className='fd-menu__addon-before'>{<span className={'sap-icon--' + addon} />}</div>
-                }
-                {link &&
-                    <Link to={link} className={`fd-menu__item${isLink ? ' fd-menu__link' : ''}`}>
-                        {children}
-                    </Link>
-                }
-                {url &&
-                    <a href={url} className={`fd-menu__item${isLink ? ' fd-menu__link' : ''}`}>
-                        {children}
-                    </a>
-                }
-                {(!url && !link) && <a className='fd-menu__item' onClick={onclick}>{children}</a>}
-            </li>
-            {separator && <hr />}
-        </React.Fragment>
-    );
-};
-
-MenuItem.propTypes = {
-    addon: PropTypes.string,
-    className: PropTypes.string,
-    isLink: PropTypes.bool,
-    separator: PropTypes.bool,
-    url: PropTypes.string
-};
-
+export const MenuList = ({ children, className }) => (
+  <MenuContext.Consumer>
+    {({ menuState: { selectedKeys } }) => (
+      <ul className={`fd-menu__list${className ? ` ${className}` : ''}`}>
+        {React.Children.map(children, item => {
+          const itemkey = item.key;
+          const selected = selectedKeys.some(sk => sk === item.key);
+          return React.cloneElement(item, { itemkey, selected });
+        })}
+      </ul>
+    )}
+  </MenuContext.Consumer>
+);
 // ---------------------------------------- Menu Group ----------------------------------------
-export const MenuGroup = ({ title, children, className, ...props }) => {
-    return (
-        <div className={`fd-menu__group${className ? ' ' + className : ''}`} {...props}>
-            <h1 className='fd-menu__title'>{title}</h1>
-            {children}
-        </div>
-    );
-};
+export const MenuGroup = ({ title, children, className, ...props }) => (
+  <div className={`fd-menu__group${className ? ` ${className}` : ''}`} {...props}>
+    <div className="fd-menu__title">{title}</div>
+    <MenuList>{children}</MenuList>
+  </div>
+);
 
 MenuGroup.propTypes = {
-    className: PropTypes.string,
-    title: PropTypes.string
+  className: PropTypes.string,
+  title: PropTypes.string
 };
+
+// export const MenuItem = ({ key, selected, separator, children, className, ...props }) => {
+//   return (
+//     <MenuContext.Consumer>
+//       {({ onClick }) => (
+//         <React.Fragment>
+//           <li
+//             className={className}
+//             {...props}
+//             onClick={e => {
+//               onClick(key, e);
+//             }}
+//             key={key}
+//           >
+//             {<div className="fd-menu__addon-before">{selected ? <span className="sap-icon--accept" /> : null}</div>}
+//             {<span className="fd-menu__item">{children}</span>}
+//           </li>
+//           {separator && <hr />}
+//         </React.Fragment>
+//       )}
+//     </MenuContext.Consumer>
+//   );
+// };

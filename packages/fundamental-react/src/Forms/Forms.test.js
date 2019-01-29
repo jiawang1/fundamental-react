@@ -2,71 +2,46 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {
-  FormFieldset,
-  FormInput,
-  FormItem,
-  FormLabel,
-  FormLegend,
-  FormMessage,
-  FormRadio,
-  FormSelect,
-  FormSet,
-  FormTextarea
-} from './Forms';
+import { FormFieldset, FormInput, FormItem, FormLabel, FormLegend, FormMessage, FormRadio, FormSelect, FormSet, FormTextarea } from './Forms';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Forms />', () => {
   const formInput = (
-      <FormSet>
-          <FormItem isInline isCheck>
-              <FormLabel forAttr='input-1'>Default Input</FormLabel>
-              <FormInput
-                  type='text'
-                  id='input-1'
-                  placeholder='Field placeholder text' />
-          </FormItem>
-          <FormItem>
-              <FormLabel forAttr='input-1' required>
+    <FormSet>
+      <FormItem isInline isCheck>
+        <FormLabel forAttr="input-1">Default Input</FormLabel>
+        <FormInput type="text" id="input-1" placeholder="Field placeholder text" />
+      </FormItem>
+      <FormItem>
+        <FormLabel forAttr="input-1" required>
           Default Input
-              </FormLabel>
-              <FormInput
-                  type='text'
-                  id='input-1'
-                  state='help'
-                  placeholder='Field placeholder text' />
-              <FormTextarea className='blue' id='textarea-1'>
+        </FormLabel>
+        <FormInput type="text" id="input-1" state="help" placeholder="Field placeholder text" />
+        <FormTextarea className="blue" id="textarea-1">
           Pellentesque metus lacus commodo eget justo ut rutrum varius nunc.
-              </FormTextarea>
-              <FormTextarea id='textarea-2'>
-          Pellentesque metus lacus commodo eget justo ut rutrum varius nunc.
-              </FormTextarea>
-              <FormMessage type='help'>
-          Pellentesque metus lacus commodo eget justo ut rutrum varius nunc
-              </FormMessage>
-              <FormMessage className='blue'>
-          Pellentesque metus lacus commodo eget justo ut rutrum varius nunc
-              </FormMessage>
-              <FormSelect id='select-1'>
-                  <option value='1'>Duis malesuada odio volutpat elementum</option>
-                  <option value='2'>Suspendisse ante ligula</option>
-                  <option value='3'>Sed bibendum sapien at posuere interdum</option>
-              </FormSelect>
-              <FormSelect className='blue' id='select-1'
-                  disabled>
-                  <option value='1'>Duis malesuada odio volutpat elementum</option>
-              </FormSelect>
-          </FormItem>
-      </FormSet>
+        </FormTextarea>
+        <FormTextarea id="textarea-2">Pellentesque metus lacus commodo eget justo ut rutrum varius nunc.</FormTextarea>
+        <FormMessage type="help">Pellentesque metus lacus commodo eget justo ut rutrum varius nunc</FormMessage>
+        <FormMessage className="blue">Pellentesque metus lacus commodo eget justo ut rutrum varius nunc</FormMessage>
+        <FormSelect id="select-1">
+          <option value="1">Duis malesuada odio volutpat elementum</option>
+          <option value="2">Suspendisse ante ligula</option>
+          <option value="3">Sed bibendum sapien at posuere interdum</option>
+        </FormSelect>
+        <FormSelect className="blue" id="select-1" disabled>
+          <option value="1">Duis malesuada odio volutpat elementum</option>
+        </FormSelect>
+      </FormItem>
+    </FormSet>
   );
 
   const formFieldSet = (
-      <FormFieldset>
-          <FormLegend className='blue'>Radio buttons</FormLegend>
-          <FormRadio
-              className='blue'
-              inputs={[
+    <FormFieldset>
+      <FormLegend className="blue">Radio buttons</FormLegend>
+      <FormRadio
+        className="blue"
+        inputs={[
           {
             id: 'radio-1',
             name: 'radio-1',
@@ -86,12 +61,13 @@ describe('<Forms />', () => {
             label: 'Option 3'
           }
         ]}
-              defaultChecked='radio-2' />
-          <FormLegend legendText='Radio buttons disabled' />
-          <FormRadio
-              isInline
-              disabled
-              inputs={[
+        defaultChecked="radio-2"
+      />
+      <FormLegend legendText="Radio buttons disabled" />
+      <FormRadio
+        isInline
+        disabled
+        inputs={[
           {
             id: 'radio-4',
             name: 'radio-4',
@@ -111,11 +87,12 @@ describe('<Forms />', () => {
             label: 'Option 3'
           }
         ]}
-              defaultChecked='radio-4' />
-          <FormLegend legendText='Inline Radio buttons' />
-          <FormRadio
-              isInline
-              inputs={[
+        defaultChecked="radio-4"
+      />
+      <FormLegend legendText="Inline Radio buttons" />
+      <FormRadio
+        isInline
+        inputs={[
           {
             id: 'radio-7',
             name: 'radio-7',
@@ -135,10 +112,11 @@ describe('<Forms />', () => {
             label: 'Option 3'
           }
         ]}
-              defaultChecked='radio-9' />
-          <FormRadio
-              disabled
-              inputs={[
+        defaultChecked="radio-9"
+      />
+      <FormRadio
+        disabled
+        inputs={[
           {
             id: 'radio-7',
             name: 'radio-7',
@@ -158,40 +136,33 @@ describe('<Forms />', () => {
             label: 'Option 3'
           }
         ]}
-              defaultChecked='radio-9' />
-          <FormLegend legendText='Checkboxes' />
-          <FormItem className='blue' isCheck>
-              <FormInput
-                  className='blue'
-                  type='checkbox'
-                  id='checkbox-1'
-                  name='checkbox-name-1'
-                  value='' />
-              <FormLabel className='blue' forAttr='checkbox-1'>
+        defaultChecked="radio-9"
+      />
+      <FormLegend legendText="Checkboxes" />
+      <FormItem className="blue" isCheck>
+        <FormInput className="blue" type="checkbox" id="checkbox-1" name="checkbox-name-1" value="" />
+        <FormLabel className="blue" forAttr="checkbox-1">
           Option One
-              </FormLabel>
-          </FormItem>
-      </FormFieldset>
+        </FormLabel>
+      </FormItem>
+    </FormFieldset>
   );
 
   const formSetWithClass = (
-      <FormSet className='blue'>
-          <FormItem isInline isCheck>
-              <FormLabel forAttr='input-1'>Default Input</FormLabel>
-              <FormInput
-                  type='text'
-                  id='input-1'
-                  placeholder='Field placeholder text' />
-          </FormItem>
-      </FormSet>
+    <FormSet className="blue">
+      <FormItem isInline isCheck>
+        <FormLabel forAttr="input-1">Default Input</FormLabel>
+        <FormInput type="text" id="input-1" placeholder="Field placeholder text" />
+      </FormItem>
+    </FormSet>
   );
 
   const formFieldSetWithClass = (
-      <FormFieldset className='blue'>
-          <FormLegend className='blue'>Radio buttons</FormLegend>
-          <FormRadio
-              className='blue'
-              inputs={[
+    <FormFieldset className="blue">
+      <FormLegend className="blue">Radio buttons</FormLegend>
+      <FormRadio
+        className="blue"
+        inputs={[
           {
             id: 'radio-1',
             name: 'radio-1',
@@ -211,13 +182,14 @@ describe('<Forms />', () => {
             label: 'Option 3'
           }
         ]}
-              defaultChecked='radio-2' />
-      </FormFieldset>
+        defaultChecked="radio-2"
+      />
+    </FormFieldset>
   );
 
   const formRadio = (
-      <FormRadio
-          inputs={[
+    <FormRadio
+      inputs={[
         {
           id: 'radio-1',
           name: 'radio-1',
@@ -237,7 +209,8 @@ describe('<Forms />', () => {
           label: 'Option 3'
         }
       ]}
-          defaultChecked='radio-2' />
+      defaultChecked="radio-2"
+    />
   );
 
   test('create form item', () => {

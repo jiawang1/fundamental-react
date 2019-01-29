@@ -1,38 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Button = ({
-  option,
-  type,
-  compact,
-  glyph,
-  dropdown,
-  navbar,
-  selected,
-  disabled,
-  typeAttr,
-  onClick,
-  children,
-  className,
-  ...props
-}) => {
-  return (
-      <button
-          className={`${option ? 'fd-button--' + option : ' fd-button'}${
-        type ? ' fd-button--' + type : ''
-      }${dropdown ? ' fd-dropdown__control' : ''}${
-        compact ? ' fd-button--compact' : ''
-      }${glyph ? ' sap-icon--' + glyph : ''}${
-        navbar ? ' fd-global-nav__btn' : ''
-      }${selected ? ' is-selected' : ''}${disabled ? ' is-disabled' : ''}${className ? ' ' + className : ''}`} {...props}
-          selected={selected ? selected : false}
-          disabled={disabled ? disabled : false}
-          type={typeAttr}
-          onClick={onClick}>
-          {children}
-      </button>
-  );
-};
+export const Button = ({ option, type, compact, glyph, dropdown, navbar, selected, disabled, typeAttr, onClick, children, className, ...props }) => (
+  <button
+    className={`${option ? `fd-button--${option}` : ' fd-button'}${type ? ` fd-button--${type}` : ''}${dropdown ? ' fd-dropdown__control' : ''}${
+      compact ? ' fd-button--compact' : ''
+    }${glyph ? ` sap-icon--${glyph}` : ''}${navbar ? ' fd-global-nav__btn' : ''}${selected ? ' is-selected' : ''}${disabled ? ' is-disabled' : ''}${
+      className ? ` ${className}` : ''
+    }`}
+    {...props}
+    selected={selected || false}
+    disabled={disabled || false}
+    type={typeAttr}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
 
 Button.propTypes = {
   compact: PropTypes.bool,
@@ -50,9 +34,8 @@ Button.propTypes = {
 export const ButtonGroup = props => {
   const { children } = props;
   return (
-      <div className='fd-button-group' role='group'
-          aria-label='Group label'>
-          {children}
-      </div>
+    <div className="fd-button-group" role="group" aria-label="Group label">
+      {children}
+    </div>
   );
 };

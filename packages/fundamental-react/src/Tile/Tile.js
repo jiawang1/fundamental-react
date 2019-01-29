@@ -2,30 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Tile = props => {
-  const {
-    disabled,
-    rowSpan,
-    columnSpan,
-    colorAccent,
-    backgroundColor,
-    children,
-    className,
-    ...rest
-  } = props;
+  const { disabled, rowSpan, columnSpan, colorAccent, backgroundColor, children, className, ...rest } = props;
   return (
-      <div
-          className={`fd-tile${disabled ? ' is-disabled' : ''}${
-        rowSpan ? ' fd-has-grid-row-span-' + rowSpan : ''
-      }${columnSpan ? ' fd-has-grid-column-span-' + columnSpan : ''}${
-        colorAccent ? ' fd-has-background-color-accent-' + colorAccent : ''
-      }${
-        backgroundColor
-          ? '  fd-has-background-color-background-' + backgroundColor
-          : ''
-      }${className ? ' ' + className : ''}`}
-          {...rest}>
-          {children}
-      </div>
+    <div
+      className={`fd-tile${disabled ? ' is-disabled' : ''}${rowSpan ? ` fd-has-grid-row-span-${rowSpan}` : ''}${columnSpan ? ` fd-has-grid-column-span-${columnSpan}` : ''}${
+        colorAccent ? ` fd-has-background-color-accent-${colorAccent}` : ''
+      }${backgroundColor ? `  fd-has-background-color-background-${backgroundColor}` : ''}${className ? ` ${className}` : ''}`}
+      {...rest}
+    >
+      {children}
+    </div>
   );
 };
 
@@ -41,10 +27,10 @@ Tile.propTypes = {
 export const TileContent = props => {
   const { title, children, className, ...rest } = props;
   return (
-      <div className={`fd-tile__content${className ? ' ' + className : ''}`} {...rest}>
-          <h2 className='fd-tile__title'>{title}</h2>
-          {children}
-      </div>
+    <div className={`fd-tile__content${className ? ` ${className}` : ''}`} {...rest}>
+      <h2 className="fd-tile__title">{title}</h2>
+      {children}
+    </div>
   );
 };
 
@@ -55,22 +41,28 @@ TileContent.propTypes = {
 
 export const TileMedia = props => {
   const { children, className, ...rest } = props;
-  return <div className={`fd-tile__media${className ? ' ' + className : ''}`} {...rest}>{children}</div>;
+  return (
+    <div className={`fd-tile__media${className ? ` ${className}` : ''}`} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export const TileActions = props => {
   const { children, className, ...rest } = props;
-  return <div className={`fd-tile__actions${className ? ' ' + className : ''}`} {...rest}>{children}</div>;
+  return (
+    <div className={`fd-tile__actions${className ? ` ${className}` : ''}`} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export const ProductTile = props => {
   const { disabled, children, className, ...rest } = props;
   return (
-      <div
-          className={`fd-product-tile${disabled ? ' is-disabled' : ''}${className ? ' ' + className : ''}`}
-          {...rest}>
-          {children}
-      </div>
+    <div className={`fd-product-tile${disabled ? ' is-disabled' : ''}${className ? ` ${className}` : ''}`} {...rest}>
+      {children}
+    </div>
   );
 };
 
@@ -82,10 +74,10 @@ ProductTile.propTypes = {
 export const ProductTileContent = props => {
   const { title, children, className, ...rest } = props;
   return (
-      <div className={`fd-product-tile__content${className ? ' ' + className : ''}`} {...rest}>
-          <h2 className='fd-product-tile__title'>{title}</h2>
-          {children}
-      </div>
+    <div className={`fd-product-tile__content${className ? ` ${className}` : ''}`} {...rest}>
+      <h2 className="fd-product-tile__title">{title}</h2>
+      {children}
+    </div>
   );
 };
 
@@ -96,11 +88,7 @@ ProductTileContent.propTypes = {
 
 export const ProductTileMedia = props => {
   const { image, className, ...rest } = props;
-  return (
-      <div
-          className={`fd-product-tile__media${className ? ' ' + className : ''}`} {...rest}
-          style={{ backgroundImage: 'url(' + image + ')' }} />
-  );
+  return <div className={`fd-product-tile__media${className ? ` ${className}` : ''}`} {...rest} style={{ backgroundImage: `url(${image})` }} />;
 };
 
 ProductTileMedia.propTypes = {
@@ -111,12 +99,9 @@ ProductTileMedia.propTypes = {
 export const TileGrid = props => {
   const { col, children, className, ...rest } = props;
   return (
-      <div
-          className={`fd-tile-grid${
-        col ? ' fd-tile-grid--' + col + 'col' : 'fd-tile-grid--3col"'
-      }${className ? ' ' + className : ''}`} {...rest}>
-          {children}
-      </div>
+    <div className={`fd-tile-grid${col ? ` fd-tile-grid--${col}col` : 'fd-tile-grid--3col"'}${className ? ` ${className}` : ''}`} {...rest}>
+      {children}
+    </div>
   );
 };
 

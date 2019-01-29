@@ -4,46 +4,46 @@ import { Badge, Label, Status, Counter } from './Badge';
 
 describe('<Badge />', () => {
   const defaultBadge = <Badge>Default</Badge>;
-  const typeBadge = <Badge type='success'>Default</Badge>;
+  const typeBadge = <Badge type="success">Default</Badge>;
 
-  const defaultPill = <Badge modifier='pill'>Default</Badge>;
+  const defaultPill = <Badge modifier="pill">Default</Badge>;
   const typePill = (
-      <Badge modifier='pill' type='success'>
+    <Badge modifier="pill" type="success">
       Default
-      </Badge>
+    </Badge>
   );
 
   const defaultFilledBadge = (
-      <Badge className='blue' modifier='filled'>
+    <Badge className="blue" modifier="filled">
       Default
-      </Badge>
+    </Badge>
   );
   const typeFillBadge = (
-      <Badge modifier='filled' type='success'>
+    <Badge modifier="filled" type="success">
       Default
-      </Badge>
+    </Badge>
   );
 
   const defaultLabel = <Label>Default</Label>;
   const typeLabel = (
-      <Label className='blue' type='success'>
+    <Label className="blue" type="success">
       Default
-      </Label>
+    </Label>
   );
 
   const defaultStatus = <Status>Default</Status>;
   const typeStatus = (
-      <Status className='blue' type='success'>
+    <Status className="blue" type="success">
       Default
-      </Status>
+    </Status>
   );
-  const iconStatus = <Status glyph='history'>Default</Status>;
+  const iconStatus = <Status glyph="history">Default</Status>;
 
   const defaultCounter = <Counter>5</Counter>;
   const notificationCounter = (
-      <Counter className='blue' notification>
+    <Counter className="blue" notification>
       5
-      </Counter>
+    </Counter>
   );
 
   test('create badges, pills and filled badges', () => {

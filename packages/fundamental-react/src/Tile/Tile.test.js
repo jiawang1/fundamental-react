@@ -1,15 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {
-  Tile,
-  TileContent,
-  TileMedia,
-  TileActions,
-  ProductTile,
-  ProductTileContent,
-  ProductTileMedia,
-  TileGrid
-} from './Tile';
+import { Tile, TileContent, TileMedia, TileActions, ProductTile, ProductTileContent, ProductTileMedia, TileGrid } from './Tile';
 import { Popover } from '../Popover/Popover';
 import { Button } from '../Button/Button';
 import { Identifier } from '../Identifier/Identifier';
@@ -17,124 +8,128 @@ import { Menu, MenuList, MenuItem } from '../Menu/Menu';
 
 describe('<Tile />', () => {
   const simpleTile = (
-      <Tile className='blue'>
-          <TileContent title='Tile Title' className='red'>
-              <p>Tile Description</p>
-          </TileContent>
-      </Tile>
+    <Tile className="blue">
+      <TileContent title='Tile Title' className='red'>
+          <p>Tile Description</p>
+        </TileContent>
+    </Tile>
   );
 
   const disabledSimpleTile = (
-      <Tile disabled columnSpan={3}
-          backgroundColor={8}>
-          <TileContent title='Tile Title'>
-              <p>Tile Description</p>
-          </TileContent>
-      </Tile>
+    <Tile disabled columnSpan={3} backgroundColor={8}>
+      <TileContent title='Tile Title'>
+          <p>Tile Description</p>
+        </TileContent>
+    </Tile>
   );
 
   const mediaTile = (
-      <Tile isButton>
-          <TileMedia className='green'>
-              <Identifier size='m' glyph='home'
-                  color={3} />
-          </TileMedia>
-          <TileContent title='Tile Title'>
-              <p>Tile Description</p>
-          </TileContent>
-      </Tile>
+    <Tile isButton>
+      <TileMedia className='green'>
+          <Identifier
+              size='m' glyph='home'
+              color={3}
+            />
+        </TileMedia>
+      <TileContent title='Tile Title'>
+          <p>Tile Description</p>
+        </TileContent>
+    </Tile>
   );
 
   const actionTile = (
-      <Tile>
-          <TileContent title='Tile Title' />
-          <TileActions className='yellow'>
-              <Popover
-                  control={<Button type='standard' glyph='vertical-grip' />}
-                  body={
-                      <Menu>
-                          <MenuList>
-                              <MenuItem url='/'>Option 1</MenuItem>
-                              <MenuItem url='/'>Option 2</MenuItem>
-                              <MenuItem url='/'>Option 3</MenuItem>
-                              <MenuItem url='/'>Option 4</MenuItem>
-                          </MenuList>
-                      </Menu>
-          } />
-          </TileActions>
-      </Tile>
+    <Tile>
+      <TileContent title='Tile Title' />
+      <TileActions className='yellow'>
+          <Popover
+          control={<Button type='standard' glyph='vertical-grip' />}
+          body={
+  <MenuList>
+                            <MenuItem url='/'>Option 1</MenuItem>
+                            <MenuItem url='/'>Option 2</MenuItem>
+                            <MenuItem url='/'>Option 3</MenuItem>
+                            <MenuItem url='/'>Option 4</MenuItem>
+              </MenuList>
+</Menu>
+          }
+        />
+      </TileActions>
+    </Tile>
   );
 
   const mediaTileNoClass = (
-      <Tile isButton>
-          <TileMedia>
-              <Identifier size='m' glyph='home'
-                  color={3} />
-          </TileMedia>
-          <TileContent title='Tile Title'>
-              <p>Tile Description</p>
-          </TileContent>
-      </Tile>
+    <Tile isButton>
+      <TileMedia>
+        <Identifier
+              size='m' glyph='home'
+              color={3}
+            />
+      </TileMedia>
+      <TileContent title='Tile Title'>
+          <p>Tile Description</p>
+        </TileContent>
+    </Tile>
   );
 
   const actionTileNoClass = (
-      <Tile>
-          <TileContent title='Tile Title' />
-          <TileActions>
-              <Popover
-                  control={<Button type='standard' glyph='vertical-grip' />}
-                  body={
-                      <Menu>
-                          <MenuList>
-                              <MenuItem url='/'>Option 1</MenuItem>
-                              <MenuItem url='/'>Option 2</MenuItem>
-                              <MenuItem url='/'>Option 3</MenuItem>
-                              <MenuItem url='/'>Option 4</MenuItem>
-                          </MenuList>
-                      </Menu>
-          } />
-          </TileActions>
-      </Tile>
+    <Tile>
+      <TileContent title='Tile Title' />
+      <TileActions>
+        <Popover
+          control={<Button type='standard' glyph='vertical-grip' />}
+          body={
+  <MenuList>
+                            <MenuItem url='/'>Option 1</MenuItem>
+                            <MenuItem url='/'>Option 2</MenuItem>
+                            <MenuItem url='/'>Option 3</MenuItem>
+                            <MenuItem url='/'>Option 4</MenuItem>
+              </MenuList>
+</Menu>
+)}
+        />
+      </TileActions>
+    </Tile>
   );
 
   const productMediaTile = (
-      <ProductTile className='pink' isButton>
-          <ProductTileMedia image='https://techne.yaas.io/images/product-thumbnail-wide.png' />
-          <ProductTileContent title='Tile Title'>
-              <p>Tile Description</p>
-          </ProductTileContent>
-      </ProductTile>
+    <ProductTile className="pink" isButton>
+      <ProductTileMedia image='https://techne.yaas.io/images/product-thumbnail-wide.png' />
+      <ProductTileContent title='Tile Title'>
+          <p>Tile Description</p>
+        </ProductTileContent>
+    </ProductTile>
   );
 
   const disabledProductMediaTile = (
-      <ProductTile disabled>
-          <ProductTileMedia
-              className='blue'
-              image='https://techne.yaas.io/images/product-thumbnail-wide.png' />
-          <ProductTileContent className='blue' title='Tile Title'>
-              <p>Tile Description</p>
-          </ProductTileContent>
-      </ProductTile>
+    <ProductTile disabled>
+      <ProductTileMedia
+          className='blue'
+          image='https://techne.yaas.io/images/product-thumbnail-wide.png'
+        />
+      <ProductTileContent className='blue' title='Tile Title'>
+          <p>Tile Description</p>
+        </ProductTileContent>
+    </ProductTile>
   );
 
   const defaultTileGrid = (
-      <TileGrid className='blue'>
-          <Tile rowSpan={2} colorAccent={7}>
-              <TileContent title='Tile Title'>
-                  <p>Tile Description</p>
-              </TileContent>
-          </Tile>
-      </TileGrid>
+    <TileGrid className="blue">
+      <Tile rowSpan={2} colorAccent={7}>
+        <TileContent title='Tile Title'>
+          <p>Tile Description</p>
+            </TileContent>
+      </Tile>
+    </TileGrid>
   );
 
   const tileGrid = (
-      <TileGrid col={4}>
-          <Tile rowSpan={2} colorAccent={7}>
-              <TileContent title='Tile Title'>
-                  <p>Tile Description</p>
-              </TileContent>
-          </Tile>
-      </TileGrid>
+    <TileGrid col={4}>
+      <Tile rowSpan={2} colorAccent={7}>
+        <TileContent title='Tile Title'>
+              <p>Tile Description</p>
+            </TileContent>
+      </Tile>
+    </TileGrid>
   );
 
   test('create tile component', () => {

@@ -38,43 +38,29 @@ class TimePickerItem extends Component {
       length: length
     };
   }
+
   /**
    *@param {object} props
    *Calculates the length of the input value depending on the props value
    */
   setLength = props => {
-    var length = 0;
-    if (
-      props.format12Hours &&
-      props.showHour &&
-      props.showMinute &&
-      props.showSecond
-    ) {
-      //format hh:mm:ss am
+    let length = 0;
+    if (props.format12Hours && props.showHour && props.showMinute && props.showSecond) {
+      // format hh:mm:ss am
       length = 11;
-    } else if (
-      !props.format12Hours &&
-      props.showHour &&
-      props.showMinute &&
-      props.showSecond
-    ) {
-      //format hh:mm:ss
+    } else if (!props.format12Hours && props.showHour && props.showMinute && props.showSecond) {
+      // format hh:mm:ss
       length = 8;
-    } else if (
-      (!props.format12Hours && props.showHour && props.showMinute) ||
-      (!props.format12Hours && props.showMinute && props.showSecond)
-    ) {
-      //format hh:mm
+    } else if ((!props.format12Hours && props.showHour && props.showMinute) || (!props.format12Hours && props.showMinute && props.showSecond)) {
+      // format hh:mm
       length = 5;
-    } else if (
-      (props.format12Hours && props.showHour && props.showMinute) ||
-      (props.format12Hours && props.showMinute && props.showSecond)
-    ) {
-      //format hh:mm am
+    } else if ((props.format12Hours && props.showHour && props.showMinute) || (props.format12Hours && props.showMinute && props.showSecond)) {
+      // format hh:mm am
       length = 8;
     }
     return length;
   };
+
   /**
    *@param {object} event
    updates value back to Parent Component(TimePicker)
@@ -86,6 +72,7 @@ class TimePickerItem extends Component {
     this.onInputValidation(aux);
     this.props.updateValue(aux);
   };
+
   /**
    *  *@param {string} value
    * validates the input based on type format and length
@@ -95,22 +82,13 @@ class TimePickerItem extends Component {
 
     if (showHour && showMinute && showSecond && format12Hours) {
       //validate hh:mm:ss am/pm format
-      let regex = new RegExp(
-        '((1[0-2]|0?[0-9]):([0-5][0-9]):([0-5][0-9]) ([AaPp][Mm]))'
-      );
+      let regex = new RegExp('((1[0-2]|0?[0-9]):([0-5][0-9]):([0-5][0-9]) ([AaPp][Mm]))');
       this.inputCheck(regex, value);
-    } else if (
-      (format12Hours && showHour && showMinute) ||
-      (format12Hours && showMinute & showSecond)
-    ) {
+    } else if ((format12Hours && showHour && showMinute) || (format12Hours && showMinute & showSecond)) {
       //validate hh:mm and mm:ss am
       let regex = new RegExp('((1[0-2]|0?[0-9]):([0-5][0-9]) ([AaPp][Mm]))');
       this.inputCheck(regex, value);
-    } else if (
-      (!format12Hours && showHour && showMinute && showSecond) ||
-      (!format12Hours && showHour && showMinute) ||
-      (!format12Hours && showMinute & showSecond)
-    ) {
+    } else if ((!format12Hours && showHour && showMinute && showSecond) || (!format12Hours && showHour && showMinute) || (!format12Hours && showMinute & showSecond)) {
       //validate hh:mm and mm:ss
       let regex = new RegExp('(1[0-2]|0?[0-9]):([0-5][0-9])');
       this.inputCheck(regex, value);
@@ -121,6 +99,7 @@ class TimePickerItem extends Component {
     //   this.inputCheck(regex, value);
     // }
   };
+
   /**
    *  @param {string} regex
    *  @param {string} value
@@ -180,6 +159,7 @@ class TimePickerItem extends Component {
       }
     }
   };
+
   updateTimeHHMMSS = value => {
     let timeValues = value.split(':');
     if (timeValues.length === 3) {
@@ -191,6 +171,7 @@ class TimePickerItem extends Component {
       this.props.onChange(time);
     }
   };
+
   updateTimeHHMM = value => {
     let timeValues = value.split(':');
     if (timeValues.length === 2) {
@@ -201,6 +182,7 @@ class TimePickerItem extends Component {
       this.props.onChange(time);
     }
   };
+
   updateTimeMMSS = value => {
     let timeValues = value.split(':');
     if (timeValues.length === 2) {
@@ -211,6 +193,7 @@ class TimePickerItem extends Component {
       this.props.onChange(time);
     }
   };
+
   updateTimeHHMMAM = value => {
     let timeValues = value.split(' ');
     if (timeValues.length === 2) {
@@ -223,6 +206,7 @@ class TimePickerItem extends Component {
       this.props.onChange(time);
     }
   };
+
   updateTimeMMSSAM = value => {
     let timeValues = value.split(' ');
     if (timeValues.length === 2) {
@@ -235,6 +219,7 @@ class TimePickerItem extends Component {
       this.props.onChange(time);
     }
   };
+
   /**
    * Handles focus out on input field and resets the value if the input value is for a valid string
    */
@@ -247,32 +232,35 @@ class TimePickerItem extends Component {
     //reset to initial style
     this.setState({ style: VALID });
   };
+
   render() {
     const { disabled } = this.props;
     return (
-        <div className='fd-popover__control'>
-            <div className='fd-input-group fd-input-group--after'>
-                <input
-                    type='text'
-                    className={this.state.style}
-                    id={this.state.inputId}
-                    placeholder={this.props.placeholder}
-                    value={this.props.value}
-                    onChange={this.onChange}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
-                    readOnly={disabled} />
-                <span className='fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button '>
-                    <button
-                        id={this.state.buttonID}
-                        className='fd-button--light fd-button--compact sap-icon--fob-watch fd-popover__control'
-                        aria-controls='rthHR811'
-                        aria-expanded='false'
-                        aria-haspopup='true'
-                        disabled={disabled} />
-                </span>
-            </div>
+      <div className="fd-popover__control">
+        <div className="fd-input-group fd-input-group--after">
+          <input
+            type="text"
+            className={this.state.style}
+            id={this.state.inputId}
+            placeholder={this.props.placeholder}
+            value={this.props.value}
+            onChange={this.onChange}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            readOnly={disabled}
+          />
+          <span className="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button ">
+            <button
+              id={this.state.buttonID}
+              className="fd-button--light fd-button--compact sap-icon--fob-watch fd-popover__control"
+              aria-controls="rthHR811"
+              aria-expanded="false"
+              aria-haspopup="true"
+              disabled={disabled}
+            />
+          </span>
         </div>
+      </div>
     );
   }
 }
@@ -398,37 +386,40 @@ export class TimePicker extends React.Component {
     const { id, ...props } = this.props;
     const { popoverId, timeId } = this.state;
     return (
-        <div id={id} className='fd-time-picker'>
-            <div className='fd-popover fd-popover--no-arrow'>
-                <Popover
-                    id={popoverId}
-                    noArrow
-                    control={
-                        <TimePickerItem
-                            id={id}
-                            {...props}
-                            updateValue={this.updateValue}
-                            time={this.state.time}
-                            value={this.state.value}
-                            onChange={this.onChange}
-                            placeholder={this.state.placeholder}
-                            disabled={this.state.disabled}
-                            updateTime={this.updateTime} />
+      <div id={id} className="fd-time-picker">
+        <div className="fd-popover fd-popover--no-arrow">
+          <Popover
+            id={popoverId}
+            noArrow
+            control={
+              <TimePickerItem
+                id={id}
+                {...props}
+                updateValue={this.updateValue}
+                time={this.state.time}
+                value={this.state.value}
+                onChange={this.onChange}
+                placeholder={this.state.placeholder}
+                disabled={this.state.disabled}
+                updateTime={this.updateTime}
+              />
             }
-                    body={
-                        <Time
-                            id={timeId}
-                            time={this.state.time}
-                            showHour={this.state.showHour}
-                            showMinute={this.state.showMinute}
-                            showSecond={this.state.showSecond}
-                            format12Hours={this.state.format12Hours}
-                            disabled={this.state.disabled}
-                            onChange={this.onChange}
-                            onUpdateTime={this.updateTime} />
-            } />
-            </div>
+            body={
+              <Time
+                id={timeId}
+                time={this.state.time}
+                showHour={this.state.showHour}
+                showMinute={this.state.showMinute}
+                showSecond={this.state.showSecond}
+                format12Hours={this.state.format12Hours}
+                disabled={this.state.disabled}
+                onChange={this.onChange}
+                onUpdateTime={this.updateTime}
+              />
+            }
+          />
         </div>
+      </div>
     );
   }
 }

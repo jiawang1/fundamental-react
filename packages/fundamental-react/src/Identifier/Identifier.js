@@ -6,17 +6,17 @@ export const Identifier = ({ glyph, size, modifier, color, label, backgroundImag
     backgroundImage: `url(${backgroundImageUrl})`
   };
   return (
-      <span
-          className={`${size ? 'fd-identifier--' + size : 'fd-identifier'}${
-        glyph ? ' sap-icon--' + glyph : ''
-      }${modifier ? ' fd-identifier--' + modifier : ''}${
-        color ? ' fd-has-background-color-accent-' + color : ''
-      }${backgroundImageUrl ? ' fd-identifier--thumbnail' : ''}${className ? ' ' + className : ''}`}
-          style={backgroundImageUrl && styles}
-          role={`${!children ? 'presentation' : ''}`}
-          aria-label={label} {...props}>
-          {children}
-      </span>
+    <span
+      className={`${size ? `fd-identifier--${size}` : 'fd-identifier'}${glyph ? ` sap-icon--${glyph}` : ''}${modifier ? ` fd-identifier--${modifier}` : ''}${
+        color ? ` fd-has-background-color-accent-${color}` : ''
+      }${backgroundImageUrl ? ' fd-identifier--thumbnail' : ''}${className ? ` ${className}` : ''}`}
+      style={backgroundImageUrl && styles}
+      role={`${!children ? 'presentation' : ''}`}
+      aria-label={label}
+      {...props}
+    >
+      {children}
+    </span>
   );
 };
 

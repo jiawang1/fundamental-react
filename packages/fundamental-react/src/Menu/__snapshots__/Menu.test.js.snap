@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Menu /> create basic menu component 1`] = `
-<nav
-  className="fd-menu"
->
+<nav>
   <ul
     className="fd-menu__list"
   >
@@ -52,7 +50,7 @@ exports[`<Menu /> create basic menu component 1`] = `
 
 exports[`<Menu /> create menu add-on component 1`] = `
 <nav
-  className="fd-menu fd-menu--addon-before"
+  addonBefore={true}
 >
   <ul
     className="fd-menu__list"
@@ -106,7 +104,7 @@ exports[`<Menu /> create menu add-on component 1`] = `
 
 exports[`<Menu /> create menu group component 1`] = `
 <nav
-  className="fd-menu blue"
+  className="blue"
 >
   <ul
     className="fd-menu__list blue"
@@ -144,11 +142,11 @@ exports[`<Menu /> create menu group component 1`] = `
   <div
     className="fd-menu__group blue"
   >
-    <h1
+    <div
       className="fd-menu__title"
     >
       Group Header
-    </h1>
+    </div>
     <ul
       className="fd-menu__list"
     >
@@ -184,11 +182,11 @@ exports[`<Menu /> create menu group component 1`] = `
   <div
     className="fd-menu__group"
   >
-    <h1
+    <div
       className="fd-menu__title"
     >
       Group Header 2
-    </h1>
+    </div>
     <ul
       className="fd-menu__list"
     >
@@ -225,9 +223,7 @@ exports[`<Menu /> create menu group component 1`] = `
 `;
 
 exports[`<Menu /> create menu with separator component 1`] = `
-<nav
-  className="fd-menu"
->
+<nav>
   <ul
     className="fd-menu__list"
   >

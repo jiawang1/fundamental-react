@@ -9,9 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('<SearchInput />', () => {
   const searchInput = 'input[type="text"].fd-input';
 
-  const getInputValue = value => {
-    return value;
-  };
+  const getInputValue = value => value;
 
   const searchData = [
     { text: 'apple', callback: jest.fn() },
@@ -25,27 +23,11 @@ describe('<SearchInput />', () => {
     { text: 'orange', callback: jest.fn() }
   ];
 
-  const defaultSearchInput = (
-      <SearchInput
-          className='blue'
-          placeholder='Enter a fruit'
-          searchList={searchData}
-          onEnter={term => getInputValue(term)} />
-  );
+  const defaultSearchInput = <SearchInput className="blue" placeholder="Enter a fruit" searchList={searchData} onEnter={term => getInputValue(term)} />;
 
-  const shellBarSearchInput = (
-      <SearchInput
-          placeholder='Enter a fruit'
-          inShellbar
-          searchList={searchData}
-          onEnter={term => getInputValue(term)} />
-  );
+  const shellBarSearchInput = <SearchInput placeholder="Enter a fruit" inShellbar searchList={searchData} onEnter={term => getInputValue(term)} />;
 
-  const noListSearchInput = (
-      <SearchInput
-          placeholder='Enter a fruit'
-          onEnter={term => getInputValue(term)} />
-  );
+  const noListSearchInput = <SearchInput placeholder="Enter a fruit" onEnter={term => getInputValue(term)} />;
 
   let component;
 
@@ -71,9 +53,7 @@ describe('<SearchInput />', () => {
     const wrapper = shallow(defaultSearchInput);
 
     // enter text into search input
-    wrapper
-      .find(searchInput)
-      .simulate('change', { target: { value: searchData[0].text } });
+    wrapper.find(searchInput).simulate('change', { target: { value: searchData[0].text } });
 
     // press Esc
     wrapper.find(searchInput).simulate('keypress', { key: 'Esc' });
@@ -119,9 +99,7 @@ describe('<SearchInput />', () => {
     wrapper.find(searchInput).simulate('click');
 
     // enter text into search input
-    wrapper
-      .find(searchInput)
-      .simulate('change', { target: { value: searchData[2].text } });
+    wrapper.find(searchInput).simulate('change', { target: { value: searchData[2].text } });
 
     // press enter key
     wrapper.find(searchInput).simulate('keypress', { key: 'Enter' });
@@ -152,9 +130,7 @@ describe('<SearchInput />', () => {
   test('check search results in shellbar with NO results', () => {
     const wrapper = shallow(shellBarSearchInput);
 
-    wrapper
-      .find(searchInput)
-      .simulate('change', { target: { value: 'HELLO WORLD' } });
+    wrapper.find(searchInput).simulate('change', { target: { value: 'HELLO WORLD' } });
 
     // check if searchTerm state is updated
     expect(wrapper.state(['value'])).toBe('HELLO WORLD');
@@ -163,9 +139,7 @@ describe('<SearchInput />', () => {
   test('check search executed on search button click in shellbar', () => {
     const wrapper = shallow(shellBarSearchInput);
 
-    wrapper
-      .find(searchInput)
-      .simulate('change', { target: { value: searchData[0].text } });
+    wrapper.find(searchInput).simulate('change', { target: { value: searchData[0].text } });
 
     // check if searchTerm state is updated
     expect(wrapper.state(['value'])).toBe(searchData[0].text);
@@ -184,7 +158,7 @@ describe('<SearchInput />', () => {
     expect(wrapper.state('isExpanded')).toBeTruthy();
 
     // handle esc key
-    let event = new KeyboardEvent('keydown', { keyCode: 27 });
+    const event = new KeyboardEvent('keydown', { keyCode: 27 });
     document.dispatchEvent(event);
 
     expect(wrapper.state('isExpanded')).toBeFalsy();

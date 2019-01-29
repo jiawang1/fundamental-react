@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Calendar } from '../Calendar/Calendar';
+import { Calendar } from './Calendar';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -10,26 +10,10 @@ describe('<Calendar />', () => {
   const mockOnChange = jest.fn();
   const defaultCalendar = <Calendar onChange={mockOnChange} />;
   const disabledWeekEnds = <Calendar disableWeekends />;
-  const disabledBeforeDay = (
-      <Calendar disableBeforeDate={new Date(2018, 7, 3, 0, 0, 0, 0)} />
-  );
-  const disabledAfterDay = (
-      <Calendar disableAfterDate={new Date(2018, 7, 3, 0, 0, 0, 0)} />
-  );
-  const blockedDays = (
-      <Calendar
-          blockedDates={[
-        new Date(2018, 1, 1, 0, 0, 0, 0),
-        new Date(2018, 3, 3, 0, 0, 0, 0)
-      ]} />
-  );
-  const disabledDates = (
-      <Calendar
-          disabledDates={[
-        new Date(2018, 1, 1, 0, 0, 0, 0),
-        new Date(2018, 3, 3, 0, 0, 0, 0)
-      ]} />
-  );
+  const disabledBeforeDay = <Calendar disableBeforeDate={new Date(2018, 7, 3, 0, 0, 0, 0)} />;
+  const disabledAfterDay = <Calendar disableAfterDate={new Date(2018, 7, 3, 0, 0, 0, 0)} />;
+  const blockedDays = <Calendar blockedDates={[new Date(2018, 1, 1, 0, 0, 0, 0), new Date(2018, 3, 3, 0, 0, 0, 0)]} />;
+  const disabledDates = <Calendar disabledDates={[new Date(2018, 1, 1, 0, 0, 0, 0), new Date(2018, 3, 3, 0, 0, 0, 0)]} />;
   const disabledWeekDay = <Calendar disableWeekday={['Monday', 'Tuesday']} />;
   const rangeSelect = <Calendar enableRangeSelection onChange={mockOnChange} />;
   const disablePast = <Calendar disablePastDates />;
@@ -49,21 +33,17 @@ describe('<Calendar />', () => {
   });
 
   test('show/hide months', () => {
-    let wrapper = mount(defaultCalendar);
+    const wrapper = mount(defaultCalendar);
     expect(wrapper.state('showMonths')).toBeFalsy();
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(1)
       .simulate('click');
 
     expect(wrapper.state('showMonths')).toBeTruthy();
 
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(1)
       .simulate('click');
 
@@ -71,12 +51,10 @@ describe('<Calendar />', () => {
   });
 
   test('click month from list', () => {
-    let wrapper = mount(defaultCalendar);
+    const wrapper = mount(defaultCalendar);
     expect(wrapper.state('showMonths')).toBeFalsy();
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(1)
       .simulate('click');
 
@@ -93,21 +71,17 @@ describe('<Calendar />', () => {
   });
 
   test('show/hide years', () => {
-    let wrapper = mount(defaultCalendar);
+    const wrapper = mount(defaultCalendar);
     expect(wrapper.state('showYears')).toBeFalsy();
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(2)
       .simulate('click');
 
     expect(wrapper.state('showYears')).toBeTruthy();
 
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(2)
       .simulate('click');
 
@@ -115,12 +89,10 @@ describe('<Calendar />', () => {
   });
 
   test('click year from list', () => {
-    let wrapper = mount(defaultCalendar);
+    const wrapper = mount(defaultCalendar);
     expect(wrapper.state('showYears')).toBeFalsy();
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(2)
       .simulate('click');
 
@@ -133,106 +105,82 @@ describe('<Calendar />', () => {
 
     // check that April was selected
     const currentDateDisplayed = wrapper.state('currentDateDisplayed');
-    let currentYearDisplayed = new Date(wrapper.state('currentYear'));
-    expect(currentDateDisplayed.getFullYear()).toEqual(
-      currentYearDisplayed.getFullYear() + 3
-    );
+    const currentYearDisplayed = new Date(wrapper.state('currentYear'));
+    expect(currentDateDisplayed.getFullYear()).toEqual(currentYearDisplayed.getFullYear() + 3);
   });
 
   test('click previous button', () => {
-    let wrapper = mount(defaultCalendar);
-    let currentDateDisplayed = new Date(wrapper.state('currentDateDisplayed'));
+    const wrapper = mount(defaultCalendar);
+    const currentDateDisplayed = new Date(wrapper.state('currentDateDisplayed'));
 
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(0)
       .simulate('click');
-    let newDateDisplayed = wrapper.state('currentDateDisplayed');
+    const newDateDisplayed = wrapper.state('currentDateDisplayed');
     currentDateDisplayed.setMonth(currentDateDisplayed.getMonth() - 1);
 
-    expect(newDateDisplayed.getMonth()).toEqual(
-      currentDateDisplayed.getMonth()
-    );
+    expect(newDateDisplayed.getMonth()).toEqual(currentDateDisplayed.getMonth());
 
     // previous button when year shown
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(2)
       .simulate('click');
 
     expect(wrapper.state('showYears')).toBeTruthy();
 
-    let currentYearDisplayed = new Date(wrapper.state('currentYear'));
+    const currentYearDisplayed = new Date(wrapper.state('currentYear'));
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(0)
       .simulate('click');
 
-    let newYearDisplayed = wrapper.state('currentYear');
+    const newYearDisplayed = wrapper.state('currentYear');
     currentYearDisplayed.setFullYear(currentYearDisplayed.getFullYear() - 12);
-    expect(newYearDisplayed.getFullYear()).toEqual(
-      currentYearDisplayed.getFullYear()
-    );
+    expect(newYearDisplayed.getFullYear()).toEqual(currentYearDisplayed.getFullYear());
   });
 
   test('click next button', () => {
-    let wrapper = mount(defaultCalendar);
-    let currentDateDisplayed = new Date(wrapper.state('currentDateDisplayed'));
+    const wrapper = mount(defaultCalendar);
+    const currentDateDisplayed = new Date(wrapper.state('currentDateDisplayed'));
 
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(3)
       .simulate('click');
-    let newDateDisplayed = wrapper.state('currentDateDisplayed');
+    const newDateDisplayed = wrapper.state('currentDateDisplayed');
 
     currentDateDisplayed.setMonth(currentDateDisplayed.getMonth() + 1);
 
-    expect(newDateDisplayed.getMonth()).toEqual(
-      currentDateDisplayed.getMonth()
-    );
+    expect(newDateDisplayed.getMonth()).toEqual(currentDateDisplayed.getMonth());
 
     // previous button when year shown
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(2)
       .simulate('click');
 
     expect(wrapper.state('showYears')).toBeTruthy();
 
-    let currentYearDisplayed = new Date(wrapper.state('currentYear'));
+    const currentYearDisplayed = new Date(wrapper.state('currentYear'));
 
     wrapper
-      .find(
-        'header.fd-calendar__header button.fd-button--light.fd-button--compact'
-      )
+      .find('header.fd-calendar__header button.fd-button--light.fd-button--compact')
       .at(3)
       .simulate('click');
 
-    let newYearDisplayed = wrapper.state('currentYear');
+    const newYearDisplayed = wrapper.state('currentYear');
 
     currentYearDisplayed.setFullYear(currentYearDisplayed.getFullYear() + 12);
-    expect(newYearDisplayed.getFullYear()).toEqual(
-      currentYearDisplayed.getFullYear()
-    );
+    expect(newYearDisplayed.getFullYear()).toEqual(currentYearDisplayed.getFullYear());
   });
 
   test('click on day', () => {
     const wrapper = mount(defaultCalendar);
     // select first day of month
     wrapper
-      .find(
-        'table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)'
-      )
+      .find('table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)')
       .at(0)
       .simulate('click');
 
@@ -240,9 +188,7 @@ describe('<Calendar />', () => {
 
     // select 2nd day of month
     wrapper
-      .find(
-        'table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)'
-      )
+      .find('table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)')
       .at(1)
       .simulate('click');
 
@@ -256,9 +202,7 @@ describe('<Calendar />', () => {
     const wrapper = mount(rangeSelect);
     // select first day of month
     wrapper
-      .find(
-        'table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)'
-      )
+      .find('table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)')
       .at(0)
       .simulate('click');
 
@@ -266,9 +210,7 @@ describe('<Calendar />', () => {
 
     // select 5nd day of month
     wrapper
-      .find(
-        'table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)'
-      )
+      .find('table.fd-calendar__table tbody.fd-calendar__group tr.fd-calendar__row td.fd-calendar__item:not(.fd-calendar__item--other-month)')
       .at(4)
       .simulate('click');
 

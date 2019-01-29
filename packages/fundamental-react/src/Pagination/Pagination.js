@@ -29,12 +29,7 @@ export class Pagination extends Component {
       return;
     }
 
-    this.setState(
-      prevState => {
-        return { selectedPage: --prevState.selectedPage };
-      },
-      () => this.props.onClick(this.state.selectedPage)
-    );
+    this.setState(prevState => ({ selectedPage: --prevState.selectedPage }), () => this.props.onClick(this.state.selectedPage));
   };
 
   // advance to next page
@@ -43,12 +38,7 @@ export class Pagination extends Component {
       return;
     }
 
-    this.setState(
-      prevState => {
-        return { selectedPage: ++prevState.selectedPage };
-      },
-      () => this.props.onClick(this.state.selectedPage)
-    );
+    this.setState(prevState => ({ selectedPage: ++prevState.selectedPage }), () => this.props.onClick(this.state.selectedPage));
   };
 
   // create pagination links
@@ -57,59 +47,49 @@ export class Pagination extends Component {
     const aPages = Array(numberOfPages)
       .fill()
       .map((link, index) => (
-          <a
-              key={index}
-              href='#'
-              className='fd-pagination__link'
-              aria-selected={this.state.selectedPage === index + 1}
-              onClick={this.pageClicked}>
-              {index + 1}
-          </a>
+        <a key={index} href="#" className="fd-pagination__link" aria-selected={this.state.selectedPage === index + 1} onClick={this.pageClicked}>
+          {index + 1}
+        </a>
       ));
     return aPages;
   };
 
   render() {
-    const {
-      itemsTotal,
-      itemsPerPage = 10,
-      displayTotal = true,
-      totalText,
-      className
-    } = this.props;
+    const { itemsTotal, itemsPerPage = 10, displayTotal = true, totalText, className } = this.props;
 
     // calculate number of pages based on item total and items per page
     // check to make sure itemsPerPage != 0
-    this.numberOfPages = Math.ceil(
-      itemsTotal / (itemsPerPage ? itemsPerPage : 10)
-    );
+    this.numberOfPages = Math.ceil(itemsTotal / (itemsPerPage || 10));
 
     return (
-        <div className={`fd-pagination${className ? ' ' + className : ''}`}>
-            {displayTotal ? (
-                <span className='fd-pagination__total'>
-                    {itemsTotal} {totalText || 'items'}
-                </span>
+      <div className={`fd-pagination${className ? ` ${className}` : ''}`}>
+        {displayTotal ? (
+          <span className="fd-pagination__total">
+            {itemsTotal} {totalText || 'items'}
+          </span>
         ) : (
           ''
         )}
 
-            <nav className='fd-pagination__nav'>
-                <a
-                    href='#'
-                    className='fd-pagination__link fd-pagination__link--previous'
-                    aria-label='Previous'
-                    aria-disabled={this.state.selectedPage === 1}
-                    onClick={this.navigateBack} />
-                {this.createPaginationLinks(this.numberOfPages)}
-                <a
-                    href='#'
-                    className='fd-pagination__link fd-pagination__link--next'
-                    aria-label='Next'
-                    aria-disabled={this.state.selectedPage === this.numberOfPages}
-                    onClick={this.navigateForward} />
-            </nav>
-        </div>
+        <nav className="fd-pagination__nav">
+          <a
+            href="#"
+            className="fd-pagination__link fd-pagination__link--previous"
+            aria-label="Previous"
+            aria-disabled={this.state.selectedPage === 1}
+            onClick={this.navigateBack}
+          />
+          {this.createPaginationLinks(this.numberOfPages)}
+          <a
+            href="#"
+            className="fd-pagination__link fd-pagination__link--next"
+            aria-label="Next"
+            aria-disabled={this.state.selectedPage === this.numberOfPages}
+            onClick={this.navigateForward}
+          />
+          />
+        </nav>
+      </div>
     );
   }
 }

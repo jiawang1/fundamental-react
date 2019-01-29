@@ -2,13 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { DatePicker } from '../DatePicker/DatePicker';
+import { DatePicker } from './DatePicker';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<DatePicker />', () => {
   const defaultDatePicker = <DatePicker />;
-  const compactDatePicker = <DatePicker compact className='blue' />;
+  const compactDatePicker = <DatePicker compact className="blue" />;
   const rangeDatePicker = <DatePicker enableRangeSelection />;
   const compactRangeDatepicker = <DatePicker enableRangeSelection compact />;
   let wrapper;
@@ -28,9 +28,7 @@ describe('<DatePicker />', () => {
     wrapper = mount(defaultDatePicker);
     expect(wrapper.state('hidden')).toBeTruthy();
 
-    wrapper
-      .find('button.fd-popover__control.fd-button--light.sap-icon--calendar')
-      .simulate('click', { type: 'input' });
+    wrapper.find('button.fd-popover__control.fd-button--light.sap-icon--calendar').simulate('click', { type: 'input' });
 
     expect(wrapper.state('hidden')).toBeFalsy();
   });
@@ -49,7 +47,7 @@ describe('<DatePicker />', () => {
 
     wrapper.instance().componentWillMount();
 
-    let event = new MouseEvent('mousedown', {
+    const event = new MouseEvent('mousedown', {
       target: document.querySelector('body')
     });
     document.dispatchEvent(event);
@@ -63,7 +61,7 @@ describe('<DatePicker />', () => {
 
   test('open/close range calendar', () => {
     wrapper = mount(rangeDatePicker);
-    //open date picker calendar
+    // open date picker calendar
     expect(wrapper.state('hidden')).toBeTruthy();
 
     wrapper.find('input[type="text"]').simulate('click', { type: 'input' });
@@ -72,7 +70,7 @@ describe('<DatePicker />', () => {
 
     wrapper.instance().componentWillMount();
 
-    let event = new MouseEvent('mousedown', {
+    const event = new MouseEvent('mousedown', {
       target: document.querySelector('body')
     });
     document.dispatchEvent(event);
@@ -85,8 +83,8 @@ describe('<DatePicker />', () => {
     expect(wrapper.state('hidden')).toBeFalsy();
 
     wrapper = mount(rangeDatePicker);
-    let startRangeDate = new Date();
-    let endRangeDate = new Date();
+    const startRangeDate = new Date();
+    const endRangeDate = new Date();
     endRangeDate.setDate(endRangeDate.getDate() + 3);
 
     let arrDates = [startRangeDate, endRangeDate];
@@ -98,8 +96,7 @@ describe('<DatePicker />', () => {
     arrDates = [endRangeDate, startRangeDate];
     wrapper.instance().updateDate(arrDates);
 
-    let switchFormattedDate = `${endRangeDate.getMonth() +
-      1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}-${startRangeDate.getMonth() +
+    const switchFormattedDate = `${endRangeDate.getMonth() + 1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}-${startRangeDate.getMonth() +
       1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}`;
 
     expect(wrapper.state('formattedDate')).toEqual(switchFormattedDate);
@@ -114,8 +111,7 @@ describe('<DatePicker />', () => {
     const date = new Date();
     wrapper.instance().updateDate(date);
     expect(wrapper.state('selectedDate')).toEqual(date);
-    let formattedDate = `${date.getMonth() +
-      1}/${date.getDate()}/${date.getFullYear()}`;
+    let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     expect(wrapper.state('formattedDate')).toEqual(formattedDate);
 
     // choose 1 day in range picker
@@ -125,22 +121,20 @@ describe('<DatePicker />', () => {
     let arrDates = [startRangeDate];
     wrapper.instance().updateDate(arrDates);
 
-    formattedDate = `${startRangeDate.getMonth() +
-      1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}`;
+    formattedDate = `${startRangeDate.getMonth() + 1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}`;
     expect(wrapper.state('formattedDate')).toEqual(formattedDate);
     expect(wrapper.state('arrSelectedDates').length).toEqual(1);
 
     // choose 2 days in range picker
     wrapper = mount(rangeDatePicker);
     startRangeDate = new Date();
-    let endRangeDate = new Date();
+    const endRangeDate = new Date();
     endRangeDate.setDate(endRangeDate.getDate() + 3);
 
     arrDates = [startRangeDate, endRangeDate];
     wrapper.instance().updateDate(arrDates);
 
-    formattedDate = `${startRangeDate.getMonth() +
-      1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}-${endRangeDate.getMonth() +
+    formattedDate = `${startRangeDate.getMonth() + 1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}-${endRangeDate.getMonth() +
       1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}`;
 
     expect(wrapper.state('formattedDate')).toEqual(formattedDate);
@@ -150,15 +144,14 @@ describe('<DatePicker />', () => {
   test('enter date value', () => {
     wrapper = mount(rangeDatePicker);
 
-    let startRangeDate = new Date();
-    let endRangeDate = new Date();
+    const startRangeDate = new Date();
+    const endRangeDate = new Date();
     endRangeDate.setDate(endRangeDate.getDate() + 3);
 
     let arrDates = [startRangeDate, endRangeDate];
     wrapper.instance().updateDate(arrDates);
 
-    let formattedDate = `${startRangeDate.getMonth() +
-      1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}-${endRangeDate.getMonth() +
+    let formattedDate = `${startRangeDate.getMonth() + 1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}-${endRangeDate.getMonth() +
       1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}`;
 
     expect(wrapper.state('formattedDate')).toEqual(formattedDate);
@@ -170,8 +163,7 @@ describe('<DatePicker />', () => {
     arrDates = [endRangeDate, startRangeDate];
     wrapper.instance().updateDate(arrDates);
 
-    let switchFormattedDate = `${endRangeDate.getMonth() +
-      1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}-${startRangeDate.getMonth() +
+    const switchFormattedDate = `${endRangeDate.getMonth() + 1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}-${startRangeDate.getMonth() +
       1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}`;
 
     expect(wrapper.state('formattedDate')).toEqual(switchFormattedDate);
@@ -180,11 +172,10 @@ describe('<DatePicker />', () => {
     wrapper.find('input[type="text"]').simulate('keypress', { key: 'Enter' });
 
     wrapper = mount(defaultDatePicker);
-    let date = new Date();
+    const date = new Date();
     wrapper.instance().updateDate(date);
     expect(wrapper.state('selectedDate')).toEqual(date);
-    formattedDate = `${date.getMonth() +
-      1}/${date.getDate()}/${date.getFullYear()}`;
+    formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     expect(wrapper.state('formattedDate')).toEqual(formattedDate);
     wrapper.find('input[type="text"]').simulate('keypress', { key: 'Enter' });
 
@@ -198,8 +189,7 @@ describe('<DatePicker />', () => {
     let endRangeDate = new Date();
     endRangeDate.setDate(endRangeDate.getDate() + 3);
 
-    let formattedDate = `${startRangeDate.getMonth() +
-      1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}-${endRangeDate.getMonth() +
+    let formattedDate = `${startRangeDate.getMonth() + 1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}-${endRangeDate.getMonth() +
       1}/${endRangeDate.getDate()}/${endRangeDate.getFullYear()}`;
 
     let arrDates = [startRangeDate, endRangeDate];
@@ -223,17 +213,14 @@ describe('<DatePicker />', () => {
     wrapper = mount(defaultDatePicker);
     startRangeDate = new Date();
 
-    formattedDate = `${startRangeDate.getMonth() +
-      1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}`;
+    formattedDate = `${startRangeDate.getMonth() + 1}/${startRangeDate.getDate()}/${startRangeDate.getFullYear()}`;
 
     expect(wrapper.instance().formatDate(startRangeDate)).toEqual('');
   });
 
   test('modify date on change', () => {
     wrapper = mount(defaultDatePicker);
-    wrapper
-      .find('input[type="text"]')
-      .simulate('change', { target: { value: '05/04/2018' } });
+    wrapper.find('input[type="text"]').simulate('change', { target: { value: '05/04/2018' } });
     expect(wrapper.state('formattedDate')).toEqual('05/04/2018');
   });
 });

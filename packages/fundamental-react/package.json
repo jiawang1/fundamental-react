@@ -14,7 +14,7 @@
     "build:lint:fix": "eslint --fix 'src/**' --ext .js,.jsx --env browser,node",
     "build:lint": "eslint 'src/**' --ext .js,.jsx --env browser,node",
     "build:umd": "NODE_ENV=production webpack ",
-    "build": "rm -rf es dist && NODE_ENV=production babel src --out-dir es --ignore __tests__,src/**/*.spec.js,src/**/*.test.js,__snapshots__,src/**/*.Component.js && npm run build:umd",
+    "build": "rm -rf es dist && NODE_ENV=production babel src --out-dir es --ignore __tests__,src/**/*.spec.js,src/**/*.test.js,__snapshots__ && npm run build:umd",
     "deploy": "../../node_models/@lerna/publish/index.js publish",
     "lint:fix": "npm run build:lint:fix",
     "lint:pre-commit": "printf \"running pre-commit lint...\"  && npm run lint && printf \"done!\n\"",
@@ -23,7 +23,8 @@
     "std-version": "standard-version -m \"chore(release): version %s build ${TRAVIS_BUILD_NUMBER} [ci skip]\"",
     "test:coverage": "jest --coverage",
     "test:dev": "jest",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "dev":"rm -rf es dist && NODE_ENV=production babel --watch src --out-dir es --ignore __tests__,src/**/*.spec.js,src/**/*.test.js,__snapshots__"
   },
   "dependencies": {
     "react-router-dom": "^4.3.1",
@@ -108,7 +109,7 @@
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(js|jsx|ts|tsx)$": "./node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },

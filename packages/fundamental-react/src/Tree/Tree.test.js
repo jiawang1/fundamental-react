@@ -8,14 +8,9 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Tree />', () => {
   const multiLevelTree = (
-      <Tree
-          headers={[
-        'Column Header',
-        'Column Header 1 ',
-        'Column Header 2',
-        'Status'
-      ]}
-          treeData={[
+    <Tree
+      headers={['Column Header', 'Column Header 1 ', 'Column Header 2', 'Status']}
+      treeData={[
         {
           id: '1',
           hasChildren: true,
@@ -29,22 +24,12 @@ describe('<Tree />', () => {
                 {
                   id: '3',
                   hasChildren: true,
-                  values: [
-                    'Grandchild 1',
-                    'Data Col 2',
-                    'Data Col 3',
-                    'INACTIVE'
-                  ],
+                  values: ['Grandchild 1', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
                   children: [
                     {
                       id: '4',
                       hasChildren: false,
-                      values: [
-                        'GreatGrandchild 1',
-                        'Data Col 2',
-                        'Data Col 3',
-                        'INACTIVE'
-                      ]
+                      values: ['GreatGrandchild 1', 'Data Col 2', 'Data Col 3', 'INACTIVE']
                     }
                   ]
                 }
@@ -89,7 +74,8 @@ describe('<Tree />', () => {
             {
               displayText: '',
               linkUrl: 'http://me.com'
-            },,
+            },
+            ,
             'Data Col 2',
             'Data Col 3',
             'INACTIVE'
@@ -102,18 +88,14 @@ describe('<Tree />', () => {
             }
           ]
         }
-      ]} />
+      ]}
+    />
   );
 
   const richTree = (
-      <Tree
-          headers={[
-        'Column Header',
-        'Column Header 1 ',
-        'Column Header 2',
-        'Status'
-      ]}
-          treeData={[
+    <Tree
+      headers={['Column Header', 'Column Header 1 ', 'Column Header 2', 'Status']}
+      treeData={[
         {
           id: '1',
           hasChildren: true,
@@ -169,7 +151,8 @@ describe('<Tree />', () => {
             }
           ]
         }
-      ]} />
+      ]}
+    />
   );
 
   test('create tree component', () => {
@@ -185,7 +168,7 @@ describe('<Tree />', () => {
   });
 
   test('open all tree from header', () => {
-    let wrapper = mount(richTree);
+    const wrapper = mount(richTree);
 
     wrapper
       .find('button.fd-tree__control')
@@ -205,7 +188,7 @@ describe('<Tree />', () => {
   });
 
   test('expand tree from row', () => {
-    let wrapper = mount(multiLevelTree);
+    const wrapper = mount(multiLevelTree);
 
     wrapper
       .find('button.fd-tree__control')

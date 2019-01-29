@@ -8,36 +8,16 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Pagination />', () => {
   const handleClick = jest.fn();
-  const defaultPagination = (
-      <Pagination itemsTotal={101} onClick={handleClick} />
-  );
-  const initialSetPagination = (
-      <Pagination
-          className='blue'
-          itemsTotal={101}
-          initalPage={5}
-          onClick={handleClick} />
-  );
+  const defaultPagination = <Pagination itemsTotal={101} onClick={handleClick} />;
+  const initialSetPagination = <Pagination className="blue" itemsTotal={101} initalPage={5} onClick={handleClick} />;
 
-  const itemsPerPagePagination = (
-      <Pagination itemsTotal={101} itemsPerPage={25}
-          onClick={handleClick} />
-  );
+  const itemsPerPagePagination = <Pagination itemsTotal={101} itemsPerPage={25} onClick={handleClick} />;
 
-  const hideTotalItemsPagination = (
-      <Pagination itemsTotal={101} displayTotal={false}
-          onClick={handleClick} />
-  );
+  const hideTotalItemsPagination = <Pagination itemsTotal={101} displayTotal={false} onClick={handleClick} />;
 
-  const totalTextPagination = (
-      <Pagination itemsTotal={101} onClick={handleClick}
-          totalText='Dalmations' />
-  );
+  const totalTextPagination = <Pagination itemsTotal={101} onClick={handleClick} totalText="Dalmations" />;
 
-  const itemsPerPageZeroPagination = (
-      <Pagination itemsTotal={101} itemsPerPage={0}
-          onClick={handleClick} />
-  );
+  const itemsPerPageZeroPagination = <Pagination itemsTotal={101} itemsPerPage={0} onClick={handleClick} />;
 
   test('create default Pagination component', () => {
     const component = renderer.create(defaultPagination);

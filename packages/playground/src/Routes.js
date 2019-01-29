@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  NavLink,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, NavLink, Redirect } from 'react-router-dom';
 
 import { ActionBarComponent } from './ActionBar/ActionBar.Component';
 import { AlertComponent } from './Alert/Alert.Component';
@@ -159,44 +153,33 @@ export default class Routes extends Component {
 
   render() {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <div className='container'>
-                <div className='sidebar'>
-                    <h1 className='logo'>FUNDAMENTAL REACT</h1>
-                    <ul className='nav'>
-                        <li className='side-nav__headers'>Components</li>
-                        {this.state.routes.map(route => {
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <div className="container">
+          <div className="sidebar">
+            <h1 className="logo">FUNDAMENTAL REACT</h1>
+            <ul className="nav">
+              <li className="side-nav__headers">Components</li>
+              {this.state.routes.map(route => {
                 return (
-                    <NavLink
-                        className='nav-item'
-                        to={{ pathname: route.url }}
-                        key={route.url}
-                        activeClassName='nav-item--active'>
-                        {route.name}
-                    </NavLink>
+                  <NavLink className="nav-item" to={{ pathname: route.url }} key={route.url} activeClassName="nav-item--active">
+                    {route.name}
+                  </NavLink>
                 );
               })}
-                    </ul>
-                </div>
-                <div className='content'>
-                    <div className='content-margin'>
-                        <Switch>
-                            {this.state.routes.map(route => {
-                  return (
-                      <Route
-                          key={route.url}
-                          exact
-                          path={route.url}
-                          component={route.component} />
-                  );
+            </ul>
+          </div>
+          <div className="content">
+            <div className="content-margin">
+              <Switch>
+                {this.state.routes.map(route => {
+                  return <Route key={route.url} exact path={route.url} component={route.component} />;
                 })}
-                            <Redirect from='' exact
-                                to='/actionBar' />
-                        </Switch>
-                    </div>
-                </div>
+                <Redirect from="" exact to="/actionBar" />
+              </Switch>
             </div>
-        </BrowserRouter>
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -43,7 +43,6 @@ export class Popover extends Component {
           isExpanded: false
         });
       } else {
-        return;
       }
     }
   }
@@ -52,6 +51,7 @@ export class Popover extends Component {
     document.addEventListener('keydown', this.pressEsc, false);
     document.addEventListener('mousedown', this.handleOutsideClick, false);
   }
+
   componentWillUnmount() {
     document.removeEventListener('keydown', this.pressEsc, false);
     document.removeEventListener('mousedown', this.handleOutsideClick, false);
@@ -60,27 +60,24 @@ export class Popover extends Component {
   render() {
     const { id, alignment, noArrow, control, body, className, ...rest } = this.props;
     return (
-        <div
-            className={`fd-popover${alignment ? ' fd-popover--' + alignment : ''}${className ? ' ' + className : ''}`}
-            ref={node => {
+      <div
+        className={`fd-popover${alignment ? ` fd-popover--${alignment}` : ''}${className ? ` ${className}` : ''}`}
+        ref={node => {
           this.node = node;
-        }} {...rest}>
-            <div
-                className='fd-popover__control'
-                aria-expanded={this.state.isExpanded}
-                onClick={this.triggerBody}
-                aria-controls={id}>
-                {control}
-            </div>
-            <div
-                className={`fd-popover__body${
-            alignment ? ' fd-popover__body--' + alignment : ''
-          }${noArrow ? ' fd-popover__body--no-arrow' : ''}`}
-                aria-hidden={!this.state.isExpanded}
-                id={id}>
-                {body}
-            </div>
+        }}
+        {...rest}
+      >
+        <div className="fd-popover__control" aria-expanded={this.state.isExpanded} onClick={this.triggerBody} aria-controls={id}>
+          {control}
         </div>
+        <div
+          className={`fd-popover__body${alignment ? ` fd-popover__body--${alignment}` : ''}${noArrow ? ' fd-popover__body--no-arrow' : ''}`}
+          aria-hidden={!this.state.isExpanded}
+          id={id}
+        >
+          {body}
+        </div>
+      </div>
     );
   }
 }

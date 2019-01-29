@@ -23,34 +23,18 @@ describe('<MultiInput />', () => {
     'Cranberry',
     'Cupuacu'
   ];
-  const multiInput = (
-      <MultiInput
-          data={data}
-          onTagsUpdate={mockOnTagsUpdate}
-          placeHolder='Select a Fruit' />
-  );
+  const multiInput = <MultiInput data={data} onTagsUpdate={mockOnTagsUpdate} placeHolder="Select a Fruit" />;
 
-  const compactMultiInput = (
-      <MultiInput
-          className='blue'
-          data={data}
-          onTagsUpdate={mockOnTagsUpdate}
-          placeHolder='Select a Fruit'
-          compact />
-  );
+  const compactMultiInput = <MultiInput className="blue" data={data} onTagsUpdate={mockOnTagsUpdate} placeHolder="Select a Fruit" compact />;
 
   let wrapper;
 
   const getListStatus = (wrapper, bIsShown) => {
-    const combobox = wrapper.find(
-      `div.fd-combobox-control[aria-expanded=${bIsShown}]`
-    );
+    const combobox = wrapper.find(`div.fd-combobox-control[aria-expanded=${bIsShown}]`);
 
-    const popover = wrapper.find(
-      `div.fd-popover__body.fd-popover__body--no-arrow[aria-hidden=${!bIsShown}]`
-    );
+    const popover = wrapper.find(`div.fd-popover__body.fd-popover__body--no-arrow[aria-hidden=${!bIsShown}]`);
 
-    return { combobox: combobox, popover: popover };
+    return { combobox, popover };
   };
 
   beforeEach(() => {
@@ -83,7 +67,7 @@ describe('<MultiInput />', () => {
     expect(wrapper.state(['bShowList'])).toBe(false);
 
     // check to see if list is not shown
-    let results = getListStatus(wrapper, false);
+    const results = getListStatus(wrapper, false);
     expect(results.combobox).toHaveLength(1);
     expect(results.popover).toHaveLength(1);
   });
@@ -121,9 +105,7 @@ describe('<MultiInput />', () => {
     expect(results.popover).toHaveLength(1);
 
     // simulate click on dropdown button
-    wrapper
-      .find('button.fd-button--light.sap-icon--navigation-down-arrow')
-      .simulate('click');
+    wrapper.find('button.fd-button--light.sap-icon--navigation-down-arrow').simulate('click');
 
     // check if bShowList state is changed
     expect(wrapper.state(['bShowList'])).toBe(true);
@@ -139,9 +121,7 @@ describe('<MultiInput />', () => {
     expect(wrapper.state(['tags'])).toHaveLength(0);
 
     // add tag to list
-    wrapper
-      .find('li:first-child>label>input.fd-checkbox[type="checkbox"]')
-      .simulate('change', { target: { value: data[0] } });
+    wrapper.find('li:first-child>label>input.fd-checkbox[type="checkbox"]').simulate('change', { target: { value: data[0] } });
 
     // check that tag list contains value
     expect(wrapper.state(['tags'])).toHaveLength(1);
@@ -150,9 +130,7 @@ describe('<MultiInput />', () => {
     expect(wrapper.find('span.fd-token[role="button"]')).toHaveLength(1);
 
     // check that tag text is correct
-    expect(wrapper.find('span.fd-token[role="button"]').text()).toEqual(
-      data[0]
-    );
+    expect(wrapper.find('span.fd-token[role="button"]').text()).toEqual(data[0]);
   });
 
   test('remove tag from taglist by unchecking', () => {
@@ -160,17 +138,13 @@ describe('<MultiInput />', () => {
     expect(wrapper.state(['tags'])).toHaveLength(0);
 
     // add tag to list
-    wrapper
-      .find('li:first-child>label>input.fd-checkbox[type="checkbox"]')
-      .simulate('change', { target: { value: data[0] } });
+    wrapper.find('li:first-child>label>input.fd-checkbox[type="checkbox"]').simulate('change', { target: { value: data[0] } });
 
     // check that tag list contains value
     expect(wrapper.state(['tags'])).toHaveLength(1);
 
     // simulate unchecking tag from tag list
-    wrapper
-      .find('li:first-child>label>input.fd-checkbox[type="checkbox"]')
-      .simulate('change', { target: { value: data[0] } });
+    wrapper.find('li:first-child>label>input.fd-checkbox[type="checkbox"]').simulate('change', { target: { value: data[0] } });
 
     // check that no tags exist
     expect(wrapper.state(['tags'])).toHaveLength(0);
@@ -181,9 +155,7 @@ describe('<MultiInput />', () => {
     expect(wrapper.state(['tags'])).toHaveLength(0);
 
     // add tag to list
-    wrapper
-      .find('li:first-child>label>input.fd-checkbox[type="checkbox"]')
-      .simulate('change', { target: { value: data[0] } });
+    wrapper.find('li:first-child>label>input.fd-checkbox[type="checkbox"]').simulate('change', { target: { value: data[0] } });
 
     // add another tag to list
     wrapper

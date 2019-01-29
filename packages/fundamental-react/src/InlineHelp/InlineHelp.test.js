@@ -8,36 +8,15 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<InlineHelp />', () => {
   const handleClick = jest.fn();
-  const defaultInlineHelp = (
-      <InlineHelp
-          className='blue'
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing.'
-          placement='bottom-right' />
-  );
+  const defaultInlineHelp = <InlineHelp className="blue" text="Lorem ipsum dolor sit amet, consectetur adipiscing." placement="bottom-right" />;
 
-  const inlineHelpBottomLeft = (
-      <InlineHelp
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing.'
-          placement='bottom-left' />
-  );
+  const inlineHelpBottomLeft = <InlineHelp text="Lorem ipsum dolor sit amet, consectetur adipiscing." placement="bottom-left" />;
 
-  const inlineHelpBottomCenter = (
-      <InlineHelp
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing.'
-          placement='bottom-center' />
-  );
+  const inlineHelpBottomCenter = <InlineHelp text="Lorem ipsum dolor sit amet, consectetur adipiscing." placement="bottom-center" />;
 
-  const inlineHelpLeft = (
-      <InlineHelp
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing.'
-          placement='left' />
-  );
+  const inlineHelpLeft = <InlineHelp text="Lorem ipsum dolor sit amet, consectetur adipiscing." placement="left" />;
 
-  const inlineHelpRight = (
-      <InlineHelp
-          text='Lorem ipsum dolor sit amet, consectetur adipiscing.'
-          placement='right' />
-  );
+  const inlineHelpRight = <InlineHelp text="Lorem ipsum dolor sit amet, consectetur adipiscing." placement="right" />;
 
   test('create default InlineHelp component', () => {
     const component = renderer.create(defaultInlineHelp);

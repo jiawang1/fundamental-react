@@ -4,11 +4,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 
 export const SideNav = props => {
   const { icons, children } = props;
-  return (
-      <nav className={`fd-side-nav${icons ? ' fd-side-nav--icons' : ''}`}>
-          {children}
-      </nav>
-  );
+  return <nav className={`fd-side-nav${icons ? ' fd-side-nav--icons' : ''}`}>{children}</nav>;
 };
 SideNav.propTypes = {
   icons: PropTypes.bool
@@ -20,12 +16,12 @@ export class SideNavList extends Component {
     this.handleSelect = this.handleSelect.bind(this);
     this.handleSelectChild = this.handleSelectChild.bind(this);
 
-    let initialState = [];
+    const initialState = [];
 
     props.items.forEach(item => {
       if (item.hasChild) {
-        let id = item.id;
-        let obj = {};
+        const id = item.id;
+        const obj = {};
 
         obj[id] = false;
         initialState.push(obj);
@@ -45,7 +41,7 @@ export class SideNavList extends Component {
   }
 
   handleSelect(e, id) {
-    let iStates = Object.assign({}, this.state.itemStates);
+    const iStates = Object.assign({}, this.state.itemStates);
     iStates[id] = !iStates[id];
     this.setState({ itemStates: iStates });
     this.setState({ selectedItem: id });
@@ -54,101 +50,71 @@ export class SideNavList extends Component {
   render() {
     const { items, className, ...rest } = this.props;
     return (
-        <BrowserRouter>
-            <ul className={`fd-side-nav__list${className ? ' ' + className : ''}`} {...rest}>
-                {items.map(item => {
-            return (
-                <li className='fd-side-nav__item' key={item.id}>
-                    {item.link ? (
+      <BrowserRouter>
+        <ul className={`fd-side-nav__list${className ? ` ${className}` : ''}`} {...rest}>
+          {items.map(item => (
+            <li className="fd-side-nav__item" key={item.id}>
+              {item.link ? (
+                <Link
+                  className={`fd-side-nav__link${this.state.selectedItem === item.id ? ' is-selected' : ''}${item.hasChild ? ' has-child' : ''}${
+                    this.state.itemStates[item.id] && item.hasChild ? ' is-expanded' : ''
+                  }`}
+                  to={{ pathname: item.link }}
+                  key={item.id}
+                  onClick={e => this.handleSelect(e, item.id)}
+                >
+                  {item.glyph ? <span className={`fd-side-nav__icon${` sap-icon--${item.glyph}`} sap-icon--l`} role="presentation" /> : null}
+                  {item.name}
+                </Link>
+              ) : null}
+
+              {item.url ? (
+                <a
+                  className={`fd-side-nav__link${this.state.selectedItem === item.id ? ' is-selected' : ''}${item.hasChild ? ' has-child' : ''}${
+                    this.state.itemStates[item.id] && item.hasChild ? ' is-expanded' : ''
+                  }`}
+                  href={item.url}
+                  key={item.id}
+                  onClick={e => this.handleSelect(e, item.id)}
+                >
+                  {item.glyph ? <span className={`fd-side-nav__icon${` sap-icon--${item.glyph}`} sap-icon--l`} role="presentation" /> : null}
+                  {item.name}
+                </a>
+              ) : null}
+
+              {item.hasChild ? (
+                <ul className="fd-side-nav__sublist" id={item.id} aria-hidden={!this.state.itemStates[item.id]} aria-expanded={this.state.itemStates[item.id]}>
+                  {item.child.map(ch => (
+                    <React.Fragment key={ch.id}>
+                      {ch.link ? (
                         <Link
-                            className={`fd-side-nav__link${
-                      this.state.selectedItem === item.id ? ' is-selected' : ''
-                    }${item.hasChild ? ' has-child' : ''}${
-                      this.state.itemStates[item.id] && item.hasChild
-                        ? ' is-expanded'
-                        : ''
-                    }`}
-                            to={{ pathname: item.link }}
-                            key={item.id}
-                            onClick={e => this.handleSelect(e, item.id)}>
-                            {item.glyph ? (
-                                <span
-                                    className={`fd-side-nav__icon${' sap-icon--' +
-                          item.glyph} sap-icon--l`}
-                                    role='presentation' />
-                    ) : null}
-                            {item.name}
+                          className={`fd-side-nav__sublink${this.state.selectedItem === ch.id ? ' is-selected' : ''}`}
+                          to={{ pathname: ch.link }}
+                          key={ch.id}
+                          onClick={e => this.handleSelectChild(e, ch.id)}
+                        >
+                          {ch.name}
                         </Link>
-                ) : null}
+                      ) : null}
 
-                    {item.url ? (
+                      {ch.url ? (
                         <a
-                            className={`fd-side-nav__link${
-                      this.state.selectedItem === item.id ? ' is-selected' : ''
-                    }${item.hasChild ? ' has-child' : ''}${
-                      this.state.itemStates[item.id] && item.hasChild
-                        ? ' is-expanded'
-                        : ''
-                    }`}
-                            href={item.url}
-                            key={item.id}
-                            onClick={e => this.handleSelect(e, item.id)}>
-                            {item.glyph ? (
-                                <span
-                                    className={`fd-side-nav__icon${' sap-icon--' +
-                          item.glyph} sap-icon--l`}
-                                    role='presentation' />
-                    ) : null}
-                            {item.name}
+                          className={`fd-side-nav__sublink${this.state.selectedItem === ch.id ? ' is-selected' : ''}`}
+                          href={ch.url}
+                          key={ch.id}
+                          onClick={e => this.handleSelectChild(e, ch.id)}
+                        >
+                          {ch.name}
                         </a>
-                ) : null}
-
-                    {item.hasChild ? (
-                        <ul
-                            className='fd-side-nav__sublist'
-                            id={item.id}
-                            aria-hidden={!this.state.itemStates[item.id]}
-                            aria-expanded={this.state.itemStates[item.id]}>
-                            {item.child.map(ch => {
-                      return (
-                          <React.Fragment key={ch.id}>
-                              {ch.link ? (
-                                  <Link
-                                      className={`fd-side-nav__sublink${
-                                this.state.selectedItem === ch.id
-                                  ? ' is-selected'
-                                  : ''
-                              }`}
-                                      to={{ pathname: ch.link }}
-                                      key={ch.id}
-                                      onClick={e => this.handleSelectChild(e, ch.id)}>
-                                      {ch.name}
-                                  </Link>
-                          ) : null}
-
-                              {ch.url ? (
-                                  <a
-                                      className={`fd-side-nav__sublink${
-                                this.state.selectedItem === ch.id
-                                  ? ' is-selected'
-                                  : ''
-                              }`}
-                                      href={ch.url}
-                                      key={ch.id}
-                                      onClick={e => this.handleSelectChild(e, ch.id)}>
-                                      {ch.name}
-                                  </a>
-                          ) : null}
-                          </React.Fragment>
-                      );
-                    })}
-                        </ul>
-                ) : null}
-                </li>
-            );
-          })}
-            </ul>
-        </BrowserRouter>
+                      ) : null}
+                    </React.Fragment>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </BrowserRouter>
     );
   }
 }
@@ -160,14 +126,14 @@ SideNavList.propTypes = {
 export const SideNavGroup = props => {
   const { title, children, className, ...rest } = props;
   return (
-      <div className={`fd-side-nav__group${className ? ' ' + className : ''}`} {...rest}>
-          <h1 className='fd-side-nav__title'>{title}</h1>
-          {children}
-      </div>
+    <div className={`fd-side-nav__group${className ? ` ${className}` : ''}`} {...rest}>
+      <h1 className="fd-side-nav__title">{title}</h1>
+      {children}
+    </div>
   );
 };
 
 SideNavGroup.propTypes = {
-    className: PropTypes.string,
-    title: PropTypes.string
+  className: PropTypes.string,
+  title: PropTypes.string
 };

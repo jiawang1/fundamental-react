@@ -8,24 +8,21 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<Alert />', () => {
   const basicAlert = (
-      <Alert dismissable link='#'
-          linkText='link'>
+    <Alert dismissable link="#" linkText="link">
       Default alert with a
-      </Alert>
+    </Alert>
   );
 
   const basicErrorAlert = (
-      <Alert dismissable type='error'
-          linkText='link'>
+    <Alert dismissable type="error" linkText="link">
       Error message with a
-      </Alert>
+    </Alert>
   );
 
   const nonDismissableAlert = (
-      <Alert className='blue' link='#'
-          linkText='link'>
+    <Alert className="blue" link="#" linkText="link">
       Default alert that cannot be dismissed
-      </Alert>
+    </Alert>
   );
 
   test('create basic alert', () => {
@@ -37,7 +34,7 @@ describe('<Alert />', () => {
     tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 
-    let wrapper = shallow(basicAlert);
+    const wrapper = shallow(basicAlert);
     expect(wrapper.state(['isActive'])).toBeTruthy();
     wrapper.find('button.fd-alert__close').simulate('click');
     expect(wrapper.state(['isActive'])).toBeFalsy();

@@ -2,7 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const packageJson = require('./package.json');
 
 const fileInfo = path.parse(packageJson.main);
@@ -49,9 +49,7 @@ module.exports = {
         include: path.join(process.cwd(), 'src'),
         loader: require.resolve('babel-loader'),
         options: {
-          customize: require.resolve(
-            'babel-preset-react-app/webpack-overrides'
-          ),
+          customize: require.resolve('babel-preset-react-app/webpack-overrides'),
           plugins: [
             [
               require.resolve('babel-plugin-named-asset-import'),
